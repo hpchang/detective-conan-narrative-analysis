@@ -4,18 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>名偵探柯南 · 分層年表</title>
+<link rel="icon" href="./favicon/1-magnifier.svg" type="image/svg+xml">
 <style>
   :root{
     --bg:#fdfcfa; --surface:#fff; --surface-2:#f4f1ec; --border:#e4dfd7;
     --text:#1c1a18; --dim:#6d6760;
-    --c1:#c0432c; --c1bg:#fdefeb;   /* 確證 red */
-    --c2:#3a6d94; --c2bg:#ecf3f9;   /* 推定 blue */
-    --c3:#8a7530; --c3bg:#faf5e6;   /* 存疑 gold */
-    --org:#2b2b33; --orgbg:#ecebee; /* 組織 */
-    --fbi:#2f6b46; --fbibg:#eaf5ee;
-    --cia:#7a4a9c; --ciabg:#f3edf9;
-    --psb:#1f5f7a; --psbbg:#e9f3f7;
-    --spine:#dcd6cc;
+    --c1:#c0432c; --c1bg:#fdefeb; --c2:#3a6d94; --c2bg:#ecf3f9;
+    --c3:#8a7530; --c3bg:#faf5e6; --org:#2b2b33; --orgbg:#ecebee;
+    --fbi:#2f6b46; --fbibg:#eaf5ee; --cia:#7a4a9c; --ciabg:#f3edf9;
+    --psb:#1f5f7a; --psbbg:#e9f3f7; --spine:#dcd6cc;
     --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
   }
@@ -29,17 +26,15 @@
   }}
   :root[data-theme="dark"]{
     --bg:#14141a; --surface:#1d1d25; --surface-2:#26262f; --border:#33323d;
-    --text:#ece9e4; --dim:#9d968d;
-    --c1:#ef8a70; --c1bg:#2d1e1b; --c2:#82b6dc; --c2bg:#18232d;
-    --c3:#d8c072; --c3bg:#282315; --org:#c9c7d2; --orgbg:#25242c;
+    --text:#ece9e4; --dim:#9d968d; --c1:#ef8a70; --c1bg:#2d1e1b; --c2:#82b6dc;
+    --c2bg:#18232d; --c3:#d8c072; --c3bg:#282315; --org:#c9c7d2; --orgbg:#25242c;
     --fbi:#79c795; --fbibg:#152418; --cia:#c2a0e0; --ciabg:#231a2d;
     --psb:#79bcd8; --psbbg:#132630; --spine:#3a3844;
   }
   :root[data-theme="light"]{
     --bg:#fdfcfa; --surface:#fff; --surface-2:#f4f1ec; --border:#e4dfd7;
-    --text:#1c1a18; --dim:#6d6760;
-    --c1:#c0432c; --c1bg:#fdefeb; --c2:#3a6d94; --c2bg:#ecf3f9;
-    --c3:#8a7530; --c3bg:#faf5e6; --org:#2b2b33; --orgbg:#ecebee;
+    --text:#1c1a18; --dim:#6d6760; --c1:#c0432c; --c1bg:#fdefeb; --c2:#3a6d94;
+    --c2bg:#ecf3f9; --c3:#8a7530; --c3bg:#faf5e6; --org:#2b2b33; --orgbg:#ecebee;
     --fbi:#2f6b46; --fbibg:#eaf5ee; --cia:#7a4a9c; --ciabg:#f3edf9;
     --psb:#1f5f7a; --psbbg:#e9f3f7; --spine:#dcd6cc;
   }
@@ -48,22 +43,29 @@
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
        font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
   .wrap{max-width:880px;margin:0 auto;padding:2rem 1.15rem 5rem}
-  svg{max-width:100%;height:auto;display:block}
+  svg,img{max-width:100%;height:auto;display:block}
 
   h1{font-size:2.1rem;margin:0 0 .5rem;letter-spacing:-.02em;line-height:1.25}
   .lede{font-size:1.05rem;color:var(--dim);margin:0 0 .5rem}
   h2{font-size:1.5rem;margin:0 0 .3rem;letter-spacing:-.01em;line-height:1.3}
   h3{font-size:1.1rem;margin:1.6rem 0 .4rem}
   p{margin:0 0 .9rem}
-  section{margin:3.5rem 0 0;scroll-margin-top:1rem}
+  section{margin:3.5rem 0 0}
   .kicker{font-size:.78rem;font-weight:800;letter-spacing:.12em;color:var(--dim);
           text-transform:uppercase;margin:0 0 .3rem;font-family:var(--mono)}
 
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;
-        padding:1.15rem 1.25rem;margin:1.2rem 0}
   .fig{background:var(--surface);border:1px solid var(--border);border-radius:14px;
        padding:1.3rem 1rem;margin:1.3rem 0;overflow-x:auto}
+  .fig.photo{padding:0;overflow:hidden}
+  .fig.photo img{width:100%;border-radius:14px 14px 0 0}
+  .fig.photo figcaption{padding:.8rem 1rem 1rem}
   .fig figcaption{font-size:.85rem;color:var(--dim);margin-top:.9rem;text-align:center;line-height:1.6}
+  .credit{display:block;font-size:.73rem;opacity:.75;margin-top:.4rem;font-family:var(--mono)}
+  .sidefig{float:right;width:190px;margin:.2rem 0 1rem 1.3rem;background:var(--surface);
+           border:1px solid var(--border);border-radius:12px;padding:.8rem}
+  .sidefig img,.sidefig svg{width:100%}
+  .sidefig figcaption{font-size:.76rem;color:var(--dim);margin-top:.5rem;text-align:center;line-height:1.55}
+  @media(max-width:620px){.sidefig{float:none;width:100%;margin:1rem 0}}
 
   .aside{border-left:4px solid var(--c2);background:var(--c2bg);border-radius:0 10px 10px 0;
          padding:.85rem 1.05rem;margin:1.2rem 0;font-size:.95rem}
@@ -71,29 +73,28 @@
   .aside.warn{border-color:var(--c3);background:var(--c3bg)} .aside.warn b{color:var(--c3)}
   .aside.fix{border-color:var(--c1);background:var(--c1bg)} .aside.fix b{color:var(--c1)}
 
-  /* controls */
   .controls{position:sticky;top:0;z-index:20;background:var(--bg);padding:.9rem 0 .8rem;
             border-bottom:1px solid var(--border);margin-bottom:.5rem}
-  .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.55rem}
-  .chip{display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;user-select:none;
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem}
+  .chip{display:inline-flex;align-items:center;gap:.35rem;cursor:pointer;user-select:none;
         border:2px solid var(--border);background:var(--surface);color:var(--dim);
-        border-radius:999px;padding:.35rem .8rem;font-size:.87rem;font-weight:700;
+        border-radius:999px;padding:.32rem .75rem;font-size:.85rem;font-weight:700;
         font-family:inherit;transition:all .15s}
-  .chip .n{font-family:var(--mono);font-size:.76rem;opacity:.8;font-weight:600}
+  .chip .n{font-family:var(--mono);font-size:.74rem;opacity:.8}
   .chip[aria-pressed="true"][data-tier="confirmed"]{border-color:var(--c1);background:var(--c1bg);color:var(--c1)}
   .chip[aria-pressed="true"][data-tier="inferred"]{border-color:var(--c2);background:var(--c2bg);color:var(--c2)}
   .chip[aria-pressed="true"][data-tier="disputed"]{border-color:var(--c3);background:var(--c3bg);color:var(--c3)}
   .chip[aria-pressed="false"]{opacity:.42;text-decoration:line-through}
-  .row2{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
-  .search{flex:1;min-width:190px;padding:.45rem .75rem;border-radius:9px;font-size:.9rem;
+  .row2{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+  .search{flex:1;min-width:180px;padding:.42rem .7rem;border-radius:9px;font-size:.88rem;
           border:2px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit}
   .search:focus{outline:none;border-color:var(--dim)}
   .mini{background:none;border:2px solid var(--border);color:var(--dim);border-radius:9px;
-        padding:.4rem .7rem;font-size:.82rem;cursor:pointer;font-family:inherit;font-weight:700;white-space:nowrap}
+        padding:.38rem .65rem;font-size:.8rem;cursor:pointer;font-family:inherit;font-weight:700;white-space:nowrap}
   .mini:hover{color:var(--text);border-color:var(--dim)}
-  .count{color:var(--dim);font-size:.8rem;font-family:var(--mono)}
+  .mini[aria-pressed="true"]{border-color:var(--c1);background:var(--c1bg);color:var(--c1)}
+  .count{color:var(--dim);font-size:.79rem;font-family:var(--mono)}
 
-  /* timeline */
   .era{margin:2.2rem 0 .9rem;display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
   .era h3{font-size:1.05rem;margin:0}
   .era span{color:var(--dim);font-size:.78rem;font-family:var(--mono)}
@@ -107,26 +108,28 @@
   .ev[data-tier="inferred"]{border-left-color:var(--c2)}  .ev[data-tier="inferred"]::before{background:var(--c2)}
   .ev[data-tier="disputed"]{border-left-color:var(--c3)}  .ev[data-tier="disputed"]::before{background:var(--c3);
               background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,var(--bg) 2px,var(--bg) 3px)}
-  .ev .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;margin-bottom:.15rem}
+  .ev .head{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin-bottom:.2rem}
   .yr{font-family:var(--mono);font-size:.85rem;font-weight:800}
   .ev[data-tier="confirmed"] .yr{color:var(--c1)}
   .ev[data-tier="inferred"] .yr{color:var(--c2)}
   .ev[data-tier="disputed"] .yr{color:var(--c3)}
-  .tag{font-size:.7rem;font-weight:800;padding:.1rem .45rem;border-radius:5px;font-family:var(--mono)}
+  .tag{font-size:.69rem;font-weight:800;padding:.1rem .42rem;border-radius:5px;font-family:var(--mono)}
   .ev[data-tier="confirmed"] .tag{background:var(--c1bg);color:var(--c1)}
   .ev[data-tier="inferred"] .tag{background:var(--c2bg);color:var(--c2)}
   .ev[data-tier="disputed"] .tag{background:var(--c3bg);color:var(--c3)}
+  .src{font-size:.69rem;font-weight:700;padding:.1rem .42rem;border-radius:5px;
+       border:1.5px solid var(--border);color:var(--dim);font-family:var(--mono);cursor:help}
+  .src[data-s="file"]{border-color:var(--c1);color:var(--c1)}
   .ev .title{margin:0;font-size:.98rem}
   .ev .meta{margin-top:.45rem;display:flex;flex-direction:column;gap:.28rem}
   .ep{font-family:var(--mono);font-size:.77rem;color:var(--dim);background:var(--surface-2);
       padding:.22rem .5rem;border-radius:6px;align-self:flex-start;line-height:1.5}
-  .ep.todo{opacity:.6;font-style:italic}
+  .ep.todo{opacity:.62;font-style:italic}
   .note{font-size:.84rem;padding:.4rem .6rem;border-radius:7px;line-height:1.6}
   .note.f{background:var(--c1bg);border-left:3px solid var(--c1)}
   .note.w{background:var(--c3bg);border-left:3px solid var(--c3)}
   .empty{text-align:center;color:var(--dim);padding:2.5rem;display:none}
 
-  /* cipher widget */
   .tiles{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;margin:.7rem 0}
   .tile{width:40px;height:48px;display:grid;place-items:center;border-radius:8px;font-family:var(--mono);
         font-size:1.25rem;font-weight:800;border:2px solid var(--border);background:var(--surface-2);
@@ -140,15 +143,21 @@
   .stepbar button[aria-pressed="true"]{border-color:var(--c1);background:var(--c1bg);color:var(--c1)}
   .steptext{text-align:center;font-size:.95rem;margin-top:.8rem;min-height:3.2em;line-height:1.7}
 
+  .legend2{display:grid;gap:.5rem;margin:1rem 0}
+  .legend2 div{display:flex;gap:.6rem;align-items:flex-start;font-size:.9rem}
+  .legend2 .k{font-family:var(--mono);font-weight:800;flex:none;min-width:6.6rem}
   .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem;margin:1.2rem 0}
   .mini-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem}
   .mini-card h4{margin:0 0 .3rem;font-size:.98rem}
   .mini-card p{margin:0;font-size:.88rem;color:var(--dim);line-height:1.65}
 
   footer{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--dim);font-size:.86rem}
-  footer h3{font-size:.95rem;color:var(--text);margin:1.3rem 0 .5rem}
+  footer h3{font-size:.95rem;color:var(--text);margin:1.4rem 0 .5rem}
   footer ul{margin:0;padding-left:1.2rem} footer li{margin-bottom:.4rem}
+  footer table{width:100%;border-collapse:collapse;font-size:.8rem;margin:.5rem 0}
+  footer td{padding:.35rem .5rem;border-bottom:1px solid var(--border);vertical-align:top}
   a{color:inherit}
+  #hits{font-family:var(--mono)}
 
   @media(max-width:560px){
     body{font-size:16px} .wrap{padding:1.5rem .85rem 4rem}
@@ -164,46 +173,60 @@
 <header>
   <p class="kicker">名偵探柯南 · 讀者研究</p>
   <h1>柯南的世界，<br>到底發生過哪些事？</h1>
-  <p class="lede">這是一份《名偵探柯南》的時間表。但它跟一般的時間表不一樣——它會老實告訴你，<strong>哪些是漫畫真的畫出來的，哪些只是大家猜的。</strong></p>
+  <p class="lede">這是一份《名偵探柯南》的時間表。但它跟一般的時間表不一樣——它會老實告訴你，<strong>哪些是漫畫真的畫出來的，哪些只是大家猜的，還有哪些你可以自己去翻書驗證。</strong></p>
 </header>
 
-<!-- ===================== 三層說明 ===================== -->
+<!-- ===== 兩種標記 ===== -->
 <section id="layers">
-  <p class="kicker">先看懂這個</p>
-  <h2>三種顏色，三種把握程度</h2>
-  <p>網路上的柯南年表，常常把「漫畫寫得清清楚楚的事」和「粉絲自己推算出來的事」混在一起講。看起來都很肯定，其實差很多。</p>
-  <p>所以這份年表把每一條分成三種：</p>
+  <p class="kicker">先看懂這兩排記號</p>
+  <h2>「有多確定」和「查不查得到」是兩回事</h2>
+  <p>這是這份年表最重要的設計。以前我們把兩件事混在一起講，結果會誤導人——</p>
+  <p>一件事情<strong>漫畫有沒有明講</strong>，跟<strong>你能不能自己翻書查證</strong>，其實是兩個不同的問題。所以現在每一條都有<strong>兩個記號</strong>。</p>
 
   <figure class="fig">
-    <svg viewBox="0 0 640 210" role="img" aria-label="三種把握程度的圖示：確定、推算、沒把握">
-      <g>
-        <circle cx="80" cy="62" r="26" fill="var(--c1)"/>
-        <text x="80" y="118" text-anchor="middle" font-size="18" font-weight="800" fill="var(--c1)" font-family="var(--sans)">確定</text>
-        <text x="80" y="144" text-anchor="middle" font-size="13" fill="var(--dim)" font-family="var(--sans)">漫畫畫出來了</text>
-        <text x="80" y="164" text-anchor="middle" font-size="13" fill="var(--dim)" font-family="var(--sans)">可以翻到那一話</text>
+    <svg viewBox="0 0 640 300" role="img" aria-label="兩種標記：確定程度與出處強度">
+      <text x="20" y="26" font-size="14" font-weight="800" fill="var(--dim)" font-family="var(--sans)">第一排 · 這件事有多確定</text>
+      <line x1="20" y1="38" x2="620" y2="38" stroke="var(--border)" stroke-width="2"/>
+      <g font-family="var(--sans)">
+        <circle cx="60" cy="76" r="19" fill="var(--c1)"/>
+        <text x="92" y="72" font-size="15" font-weight="800" fill="var(--c1)">◆ 確定</text>
+        <text x="92" y="93" font-size="12.5" fill="var(--dim)">漫畫直接講出來的</text>
+        <circle cx="270" cy="76" r="19" fill="none" stroke="var(--c2)" stroke-width="4.5"/>
+        <text x="302" y="72" font-size="15" font-weight="800" fill="var(--c2)">◇ 推算</text>
+        <text x="302" y="93" font-size="12.5" fill="var(--dim)">從線索算出來的</text>
+        <circle cx="470" cy="76" r="19" fill="none" stroke="var(--c3)" stroke-width="4.5" stroke-dasharray="6 5"/>
+        <text x="502" y="72" font-size="15" font-weight="800" fill="var(--c3)">○ 沒把握</text>
+        <text x="502" y="93" font-size="12.5" fill="var(--dim)">只是猜測</text>
       </g>
-      <g>
-        <circle cx="320" cy="62" r="26" fill="none" stroke="var(--c2)" stroke-width="5"/>
-        <text x="320" y="118" text-anchor="middle" font-size="18" font-weight="800" fill="var(--c2)" font-family="var(--sans)">推算</text>
-        <text x="320" y="144" text-anchor="middle" font-size="13" fill="var(--dim)" font-family="var(--sans)">漫畫沒直接說</text>
-        <text x="320" y="164" text-anchor="middle" font-size="13" fill="var(--dim)" font-family="var(--sans)">是從線索算出來的</text>
-      </g>
-      <g>
-        <circle cx="560" cy="62" r="26" fill="none" stroke="var(--c3)" stroke-width="5" stroke-dasharray="7 6"/>
-        <text x="560" y="118" text-anchor="middle" font-size="18" font-weight="800" fill="var(--c3)" font-family="var(--sans)">沒把握</text>
-        <text x="560" y="144" text-anchor="middle" font-size="13" fill="var(--dim)" font-family="var(--sans)">只是粉絲的猜測</text>
-        <text x="560" y="164" text-anchor="middle" font-size="13" fill="var(--dim)" font-family="var(--sans)">或不同說法打架</text>
+      <text x="20" y="152" font-size="14" font-weight="800" fill="var(--dim)" font-family="var(--sans)">第二排 · 你能查到什麼程度</text>
+      <line x1="20" y1="164" x2="620" y2="164" stroke="var(--border)" stroke-width="2"/>
+      <g font-family="var(--sans)">
+        <rect x="26" y="184" width="176" height="86" rx="11" fill="var(--c1bg)" stroke="var(--c1)" stroke-width="2.5"/>
+        <text x="114" y="210" text-anchor="middle" font-size="15" font-weight="800" fill="var(--c1)">📖 有話數</text>
+        <text x="114" y="233" text-anchor="middle" font-size="12" fill="var(--dim)">寫得出第幾集第幾話</text>
+        <text x="114" y="253" text-anchor="middle" font-size="12" fill="var(--dim)">你可以自己去翻</text>
+
+        <rect x="232" y="184" width="176" height="86" rx="11" fill="var(--surface-2)" stroke="var(--border)" stroke-width="2.5"/>
+        <text x="320" y="210" text-anchor="middle" font-size="15" font-weight="800" fill="var(--text)">💬 有台詞</text>
+        <text x="320" y="233" text-anchor="middle" font-size="12" fill="var(--dim)">查到了角色講的原句</text>
+        <text x="320" y="253" text-anchor="middle" font-size="12" fill="var(--dim)">但話數還沒找到</text>
+
+        <rect x="438" y="184" width="176" height="86" rx="11" fill="var(--surface-2)" stroke="var(--border)" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <text x="526" y="210" text-anchor="middle" font-size="15" font-weight="800" fill="var(--dim)">📄 只有轉述</text>
+        <text x="526" y="233" text-anchor="middle" font-size="12" fill="var(--dim)">是別的資料站說的</text>
+        <text x="526" y="253" text-anchor="middle" font-size="12" fill="var(--dim)">我沒看過漫畫原文</text>
       </g>
     </svg>
-    <figcaption>實心＝確定　空心＝推算　虛線＝沒把握。顏色越實在，代表證據越硬。</figcaption>
+    <figcaption>每一條都會同時掛上這兩排的其中一個。例如 <strong>◆ 📄</strong> 的意思是：漫畫有講，但我是從別的資料站看到的，還沒親自確認出處。</figcaption>
   </figure>
 
-  <div class="aside"><b>為什麼要這樣分？</b><br>
-    因為「我知道」和「我猜」是兩件事。把猜測講得像事實，久了就會有人當真、再傳給別人。分開標示，讀的人才有辦法自己判斷。這在讀任何資料的時候都適用，不只是柯南。</p>
+  <div class="aside"><b>為什麼要分這麼細？</b><br>
+    因為「我知道」「我猜」「我聽別人說」是三件不同的事。<br>
+    以前這份年表把「漫畫 30 集 File 4–7」和「某個資料站說有這件事」標成同一級——那對讀的人不公平。現在你可以一眼看出，哪些是<strong>我敢請你去翻書對證</strong>的。
   </div>
 </section>
 
-<!-- ===================== 鏡子密碼 ===================== -->
+<!-- ===== 鏡子密碼 ===== -->
 <section id="cipher">
   <p class="kicker">最精彩的一段</p>
   <h2>鏡子上的死前留言</h2>
@@ -211,12 +234,10 @@
   <p>鏡子上原本寫著英文 <code>PUT ON MASCARA</code>（塗睫毛膏）。他<strong>剪掉了四個字母</strong>——然後把鏡子泡進水槽、開著水龍頭，讓壞人來不及清理現場。</p>
 
   <figure class="fig">
-    <div id="cipher-widget">
-      <div class="tiles" id="tiles"></div>
-      <p class="steptext" id="steptext"></p>
-      <div class="stepbar" id="stepbar"></div>
-    </div>
-    <figcaption>點上面的按鈕，一步一步看羽田浩司怎麼藏這個暗號。</figcaption>
+    <div class="tiles" id="tiles"></div>
+    <p class="steptext" id="steptext"></p>
+    <div class="stepbar" id="stepbar"></div>
+    <figcaption>點按鈕，一步一步看羽田浩司怎麼藏這個暗號。</figcaption>
   </figure>
 
   <div class="aside fix"><b>這裡最容易搞錯</b><br>
@@ -226,22 +247,39 @@
 
   <h3>為什麼這個暗號這麼厲害？</h3>
   <p>因為它<strong>故意設計成會被猜錯一次</strong>。</p>
-  <p>剩下的 8 個字母，可以排成 <code>ASACA RUM</code>——看起來像在指認兇手「淺香」和「蘭姆」。警察和黑衣組織都是這樣讀的，所以追了淺香十七年。</p>
-  <p>但後來<strong>工藤優作</strong>（新一的爸爸）想到：如果不把它拆成兩個字，而是連起來讀呢？</p>
-  <p>就變成 <code>CARASUMA</code>——<strong>烏丸</strong>。黑衣組織真正的老大。</p>
+  <p>剩下的 8 個字母可以排成 <code>ASACA RUM</code>——看起來像在指認兇手「淺香」和「蘭姆」。警察和黑衣組織都這樣讀，所以追錯了十七年。</p>
+  <p>但後來<strong>工藤優作</strong>（新一的爸爸）想到：如果不拆成兩個字，連起來讀呢？就變成 <code>CARASUMA</code>——<strong>烏丸</strong>，黑衣組織真正的老大。</p>
   <div class="aside"><b>換句話說</b><br>
     羽田浩司要指的，從頭到尾就不是動手的人，而是<strong>躲在最後面的那個人</strong>。他知道自己來不及說完，所以把答案藏在一個「會先被讀錯」的字謎裡。
   </div>
 </section>
 
-<!-- ===================== 年代尺 ===================== -->
+<!-- ===== 角行 ===== -->
+<section id="kakugyo">
+  <p class="kicker">案發現場少了一樣東西</p>
+  <h2>那顆不見的棋子叫「角行」</h2>
+  <figure class="sidefig">
+    <img src="./img/kakugyo.svg" alt="將棋的角行棋子" width="190" height="207" loading="lazy">
+    <figcaption>將棋的<strong>角行</strong>。走法是斜著走，想走多遠都行。
+      <span class="credit">Luffykudo · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption>
+  </figure>
+  <p>羽田浩司是職業<strong>將棋</strong>棋士。將棋是日本的棋，跟西洋棋長得不一樣——棋子是五角形的小木片，上面寫漢字。</p>
+  <p>他隨身帶著一顆當幸運符的棋子，叫做<strong>角行</strong>。命案之後，這顆棋子不見了。後來出現在另一個人手上，成為串起整件案子的線索之一。</p>
+  <div class="aside warn"><b>這裡有個翻譯陷阱</b><br>
+    英文資料常把角行翻成 <code>bishop</code>（西洋棋的主教），因為兩者走法都是斜線。<br>
+    但它們是<strong>不同的棋</strong>——之前的版本直接照英文寫成「主教」，是錯的。日文原作寫的就是<strong>角行</strong>。
+  </div>
+  <p style="clear:both"></p>
+</section>
+
+<!-- ===== 年代尺 ===== -->
 <section id="ruler">
   <p class="kicker">時間有多長</p>
   <h2>這個故事往回追了 98 年</h2>
   <p>柯南的故事「現在」其實還不到一年——新一變小之後，漫畫裡連一個生日都還沒過完。但故事背後的往事，最遠可以追到<strong>將近一百年前</strong>。</p>
 
   <figure class="fig">
-    <svg viewBox="0 0 660 300" role="img" aria-label="從 98 年前到現在的時間尺，標出主要事件">
+    <svg viewBox="0 0 660 300" role="img" aria-label="從 98 年前到現在的時間尺">
       <line x1="70" y1="30" x2="70" y2="272" stroke="var(--spine)" stroke-width="3"/>
       <g font-family="var(--sans)">
         <g><circle cx="70" cy="42" r="7" fill="var(--c3)"/><text x="90" y="40" font-size="14" font-weight="700" fill="var(--text)">98 年前</text><text x="90" y="58" font-size="12.5" fill="var(--dim)">Amanda Hughes 出生</text></g>
@@ -261,7 +299,21 @@
   </div>
 </section>
 
-<!-- ===================== 臥底陣營 ===================== -->
+<!-- ===== 浮動時間軸 + 軟碟 ===== -->
+<section id="floating">
+  <p class="kicker">一個奇怪的現象</p>
+  <h2>科技一直在變，但大家都沒變老</h2>
+  <figure class="fig photo">
+    <img src="./img/floppy.jpg" alt="3.5 吋軟碟" loading="lazy">
+    <figcaption>柯南剛開始連載的 1994 年，資料是存在這種東西裡的——<strong>軟碟片</strong>，一片只能裝 1.4 MB，大概是一張手機照片的三分之一。
+      <span class="credit">Photo: George Chernilevsky · Public domain · Wikimedia Commons</span></figcaption>
+  </figure>
+  <p>《名偵探柯南》從 1994 年連載到現在，已經三十多年了。早期的案子裡出現軟碟片、傳真機；最近的案子裡大家都拿智慧型手機。</p>
+  <p>可是<strong>角色一個都沒長大</strong>。新一還是高中一年級，柯南還是小學一年級。</p>
+  <p>這叫做<strong>浮動時間軸</strong>——故事裡的時間幾乎不前進，但畫出來的世界會跟著現實更新。所以年表裡所有的「X 年前」，都是相對於那個幾乎不動的「現在」。</p>
+</section>
+
+<!-- ===== 臥底陣營 ===== -->
 <section id="spies">
   <p class="kicker">誰是誰的人</p>
   <h2>四個單位，都派人混進了組織</h2>
@@ -272,27 +324,20 @@
       <circle cx="330" cy="200" r="74" fill="var(--orgbg)" stroke="var(--org)" stroke-width="3"/>
       <text x="330" y="194" text-anchor="middle" font-size="17" font-weight="800" fill="var(--org)" font-family="var(--sans)">黑衣組織</text>
       <text x="330" y="216" text-anchor="middle" font-size="12" fill="var(--dim)" font-family="var(--sans)">老大：烏丸蓮耶</text>
-
       <g stroke-width="2.5" stroke-dasharray="6 5" fill="none">
-        <path d="M150 92 L272 168" stroke="var(--fbi)"/>
-        <path d="M510 92 L388 168" stroke="var(--cia)"/>
-        <path d="M150 308 L272 232" stroke="var(--psb)"/>
-        <path d="M510 308 L388 232" stroke="var(--c3)"/>
+        <path d="M150 92 L272 168" stroke="var(--fbi)"/><path d="M510 92 L388 168" stroke="var(--cia)"/>
+        <path d="M150 308 L272 232" stroke="var(--psb)"/><path d="M510 308 L388 232" stroke="var(--c3)"/>
       </g>
-
       <g font-family="var(--sans)">
         <rect x="30" y="42" width="200" height="66" rx="12" fill="var(--fbibg)" stroke="var(--fbi)" stroke-width="2.5"/>
         <text x="46" y="68" font-size="15" font-weight="800" fill="var(--fbi)">FBI（美國）</text>
         <text x="46" y="90" font-size="12.5" fill="var(--dim)">赤井秀一　＝　黑麥威士忌</text>
-
         <rect x="430" y="42" width="200" height="66" rx="12" fill="var(--ciabg)" stroke="var(--cia)" stroke-width="2.5"/>
         <text x="446" y="68" font-size="15" font-weight="800" fill="var(--cia)">CIA（美國）</text>
         <text x="446" y="90" font-size="12.5" fill="var(--dim)">本堂瑛海　＝　基爾</text>
-
         <rect x="30" y="292" width="200" height="66" rx="12" fill="var(--psbbg)" stroke="var(--psb)" stroke-width="2.5"/>
         <text x="46" y="318" font-size="15" font-weight="800" fill="var(--psb)">公安警察（日本）</text>
         <text x="46" y="340" font-size="12.5" fill="var(--dim)">降谷零　＝　波本</text>
-
         <rect x="430" y="292" width="200" height="66" rx="12" fill="var(--c3bg)" stroke="var(--c3)" stroke-width="2.5"/>
         <text x="446" y="318" font-size="15" font-weight="800" fill="var(--c3)">公安警察（已犧牲）</text>
         <text x="446" y="340" font-size="12.5" fill="var(--dim)">諸伏景光　＝　蘇格蘭</text>
@@ -303,12 +348,12 @@
 
   <div class="aside"><b>最慘的是他們互相不知道</b><br>
     諸伏景光死的時候，赤井秀一想救他、還亮出自己 FBI 的身分。結果<strong>降谷零跑上樓的腳步聲</strong>讓景光以為殺手來了，趁機開槍自盡。
-    赤井為了保住自己的臥底身分，撿起槍裝成兇手——從此降谷零恨了赤井很多年。
-    <br><br>害死好朋友的那個腳步聲，其實是降谷零自己的。
+    赤井為了保住臥底身分，撿起槍裝成兇手——從此降谷零恨了赤井很多年。<br><br>
+    害死好朋友的那個腳步聲，其實是降谷零自己的。
   </div>
 </section>
 
-<!-- ===================== 警察學校組 ===================== -->
+<!-- ===== 警察學校組 ===== -->
 <section id="academy">
   <p class="kicker">查證後新增</p>
   <h2>警察學校的五個人，走了三個</h2>
@@ -318,100 +363,107 @@
   <figure class="fig">
     <svg viewBox="0 0 660 250" role="img" aria-label="警察學校五人組與三次殉職">
       <g font-family="var(--sans)">
-        <g>
-          <rect x="20" y="40" width="118" height="96" rx="12" fill="var(--c1bg)" stroke="var(--c1)" stroke-width="2.5"/>
-          <text x="79" y="68" text-anchor="middle" font-size="14" font-weight="800" fill="var(--c1)">萩原研二</text>
-          <text x="79" y="92" text-anchor="middle" font-size="12" fill="var(--dim)">7 年前</text>
-          <text x="79" y="112" text-anchor="middle" font-size="13" font-weight="800" fill="var(--c1)">11 / 7</text>
-          <text x="79" y="128" text-anchor="middle" font-size="11.5" fill="var(--dim)">公寓爆炸</text>
-        </g>
-        <g>
-          <rect x="152" y="40" width="118" height="96" rx="12" fill="var(--c1bg)" stroke="var(--c1)" stroke-width="2.5"/>
-          <text x="211" y="68" text-anchor="middle" font-size="14" font-weight="800" fill="var(--c1)">松田陣平</text>
-          <text x="211" y="92" text-anchor="middle" font-size="12" fill="var(--dim)">3 年前</text>
-          <text x="211" y="112" text-anchor="middle" font-size="13" font-weight="800" fill="var(--c1)">11 / 7</text>
-          <text x="211" y="128" text-anchor="middle" font-size="11.5" fill="var(--dim)">炸彈</text>
-        </g>
-        <g>
-          <rect x="284" y="40" width="118" height="96" rx="12" fill="var(--c3bg)" stroke="var(--c3)" stroke-width="2.5" stroke-dasharray="6 5"/>
-          <text x="343" y="68" text-anchor="middle" font-size="14" font-weight="800" fill="var(--c3)">諸伏景光</text>
-          <text x="343" y="92" text-anchor="middle" font-size="12" fill="var(--dim)">年份未確認</text>
-          <text x="343" y="114" text-anchor="middle" font-size="11.5" fill="var(--dim)">臥底身分曝光</text>
-          <text x="343" y="130" text-anchor="middle" font-size="11.5" fill="var(--dim)">屋頂自盡</text>
-        </g>
-        <g>
-          <rect x="416" y="40" width="108" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="2.5"/>
-          <text x="470" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="var(--dim)">伊達航</text>
-          <text x="470" y="104" text-anchor="middle" font-size="12" fill="var(--dim)">1 年前</text>
-          <text x="470" y="122" text-anchor="middle" font-size="11.5" fill="var(--dim)">車禍</text>
-        </g>
-        <g>
-          <rect x="538" y="40" width="102" height="96" rx="12" fill="var(--psbbg)" stroke="var(--psb)" stroke-width="2.5"/>
-          <text x="589" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="var(--psb)">降谷零</text>
-          <text x="589" y="106" text-anchor="middle" font-size="11.5" fill="var(--dim)">唯一還在</text>
-          <text x="589" y="124" text-anchor="middle" font-size="11.5" fill="var(--dim)">組織裡的人</text>
-        </g>
+        <rect x="20" y="40" width="118" height="96" rx="12" fill="var(--c1bg)" stroke="var(--c1)" stroke-width="2.5"/>
+        <text x="79" y="68" text-anchor="middle" font-size="14" font-weight="800" fill="var(--c1)">萩原研二</text>
+        <text x="79" y="92" text-anchor="middle" font-size="12" fill="var(--dim)">7 年前</text>
+        <text x="79" y="112" text-anchor="middle" font-size="13" font-weight="800" fill="var(--c1)">11 / 7</text>
+        <text x="79" y="128" text-anchor="middle" font-size="11.5" fill="var(--dim)">公寓爆炸</text>
+        <rect x="152" y="40" width="118" height="96" rx="12" fill="var(--c1bg)" stroke="var(--c1)" stroke-width="2.5"/>
+        <text x="211" y="68" text-anchor="middle" font-size="14" font-weight="800" fill="var(--c1)">松田陣平</text>
+        <text x="211" y="92" text-anchor="middle" font-size="12" fill="var(--dim)">3 年前</text>
+        <text x="211" y="112" text-anchor="middle" font-size="13" font-weight="800" fill="var(--c1)">11 / 7</text>
+        <text x="211" y="128" text-anchor="middle" font-size="11.5" fill="var(--dim)">炸彈</text>
+        <rect x="284" y="40" width="118" height="96" rx="12" fill="var(--c3bg)" stroke="var(--c3)" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <text x="343" y="68" text-anchor="middle" font-size="14" font-weight="800" fill="var(--c3)">諸伏景光</text>
+        <text x="343" y="92" text-anchor="middle" font-size="12" fill="var(--dim)">年份未確認</text>
+        <text x="343" y="114" text-anchor="middle" font-size="11.5" fill="var(--dim)">臥底身分曝光</text>
+        <text x="343" y="130" text-anchor="middle" font-size="11.5" fill="var(--dim)">屋頂自盡</text>
+        <rect x="416" y="40" width="108" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="2.5"/>
+        <text x="470" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="var(--dim)">伊達航</text>
+        <text x="470" y="104" text-anchor="middle" font-size="12" fill="var(--dim)">1 年前</text>
+        <text x="470" y="122" text-anchor="middle" font-size="11.5" fill="var(--dim)">車禍</text>
+        <rect x="538" y="40" width="102" height="96" rx="12" fill="var(--psbbg)" stroke="var(--psb)" stroke-width="2.5"/>
+        <text x="589" y="80" text-anchor="middle" font-size="14" font-weight="800" fill="var(--psb)">降谷零</text>
+        <text x="589" y="106" text-anchor="middle" font-size="11.5" fill="var(--dim)">唯一還在</text>
+        <text x="589" y="124" text-anchor="middle" font-size="11.5" fill="var(--dim)">組織裡的人</text>
         <line x1="79" y1="152" x2="211" y2="152" stroke="var(--c1)" stroke-width="2.5" stroke-dasharray="5 4"/>
         <text x="145" y="176" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--c1)">相隔 4 年，同樣是 11 月 7 日</text>
       </g>
     </svg>
-    <figcaption>這一段是這次<strong>對照 Detective Conan Wiki 才補上的</strong>——先前的版本完全漏掉了 7 年前和 3 年前這兩件事。</figcaption>
+    <figcaption>這一段是對照 Detective Conan Wiki 才補上的——先前版本完全漏掉了 7 年前和 3 年前這兩件事。</figcaption>
   </figure>
 </section>
 
-<!-- ===================== APTX ===================== -->
+<!-- ===== APTX ===== -->
 <section id="aptx">
   <p class="kicker">變小的原因</p>
   <h2>APTX 4869 到底做了什麼？</h2>
-  <p>新一被灌的那顆藥叫 <strong>APTX 4869</strong>。組織拿它當<strong>驗不出來的毒藥</strong>用——吃下去的人會死，而且解剖也查不到藥的痕跡。</p>
-  <p>但它偶爾會出意外：不是把人殺死，而是<strong>把人變回小孩</strong>。</p>
+  <p>新一被灌的那顆藥叫 <strong>APTX 4869</strong>。組織拿它當<strong>驗不出來的毒藥</strong>用——吃下去的人會死，解剖也查不到藥的痕跡。但它偶爾會出意外：不是把人殺死，而是<strong>把人變回小孩</strong>。</p>
 
   <figure class="fig">
     <svg viewBox="0 0 660 300" role="img" aria-label="APTX 4869 的兩種結果">
       <g font-family="var(--sans)">
         <rect x="255" y="14" width="150" height="52" rx="26" fill="var(--orgbg)" stroke="var(--org)" stroke-width="3"/>
         <text x="330" y="46" text-anchor="middle" font-size="16" font-weight="800" fill="var(--org)">APTX 4869</text>
-        <path d="M330 66 L330 92 M330 92 L170 92 L170 122 M330 92 L490 92 L490 122"
-              stroke="var(--spine)" stroke-width="3" fill="none"/>
+        <path d="M330 66 L330 92 M330 92 L170 92 L170 122 M330 92 L490 92 L490 122" stroke="var(--spine)" stroke-width="3" fill="none"/>
         <rect x="45" y="122" width="250" height="120" rx="14" fill="var(--c1bg)" stroke="var(--c1)" stroke-width="2.5"/>
         <text x="170" y="152" text-anchor="middle" font-size="15" font-weight="800" fill="var(--c1)">通常：細胞全毀</text>
         <text x="170" y="180" text-anchor="middle" font-size="13" fill="var(--dim)">人會死</text>
         <text x="170" y="204" text-anchor="middle" font-size="13" fill="var(--dim)">解剖查不出藥物</text>
         <text x="170" y="228" text-anchor="middle" font-size="13" fill="var(--dim)">→ 組織拿它當毒藥</text>
-
         <rect x="365" y="122" width="250" height="120" rx="14" fill="var(--c2bg)" stroke="var(--c2)" stroke-width="2.5"/>
         <text x="490" y="152" text-anchor="middle" font-size="15" font-weight="800" fill="var(--c2)">偶爾：細胞回到年輕</text>
         <text x="490" y="180" text-anchor="middle" font-size="13" fill="var(--dim)">身體縮回小孩</text>
         <text x="490" y="204" text-anchor="middle" font-size="13" fill="var(--dim)">但腦袋完全沒變</text>
         <text x="490" y="228" text-anchor="middle" font-size="13" fill="var(--dim)">→ 新一變成柯南</text>
-
         <text x="330" y="278" text-anchor="middle" font-size="13.5" fill="var(--dim)">記憶和推理能力留著，是因為藥不影響神經系統</text>
       </g>
     </svg>
     <figcaption>同一顆藥，兩個方向完全相反的結果——這是官方設定集寫明的。</figcaption>
   </figure>
 
+  <figure class="sidefig">
+    <img src="./img/cassette.jpg" alt="卡式錄音帶" width="190" height="107" loading="lazy">
+    <figcaption>卡式錄音帶。一捲大約錄 60 到 90 分鐘。
+      <span class="credit">Photo: Inpriva · CC0</span></figcaption>
+  </figure>
   <div class="aside"><b>本來不是毒藥</b><br>
-    這款藥原本是<strong>宮野志保的爸媽</strong>在研究的，目標是讓細胞變年輕。他們給它取的暱稱是「<strong>銀色子彈</strong>」。
-    後來他們死於研究室火災，志保才靠殘留的資料把它重新做出來。
+    這款藥原本是<strong>宮野志保的爸媽</strong>在研究的，目標是讓細胞變年輕。他們給它取的暱稱是「<strong>銀色子彈</strong>」。後來他們死於研究室火災，志保才靠殘留的資料把它重新做出來。
   </div>
+  <p>志保的媽媽<strong>宮野艾蓮娜</strong>，在女兒還很小的時候，就先錄好了<strong>二十年份的生日祝福</strong>，裝在四捲卡帶裡。</p>
+  <p>而在志保<strong>十八歲</strong>的那一捲上，她講的不是祝福——她問女兒：如果繼續做這個研究，<strong>妳會不會後悔？</strong></p>
+  <p style="clear:both"></p>
 </section>
 
-<!-- ===================== 年表 ===================== -->
+<!-- ===== 倫敦 ===== -->
+<section id="london">
+  <p class="kicker">另一個被變小的人</p>
+  <h2>倫敦的橋上，世良瑪麗也中了同一種藥</h2>
+  <figure class="fig photo">
+    <img src="./img/vauxhall.jpg" alt="倫敦泰晤士河上的沃克斯豪爾橋" loading="lazy">
+    <figcaption>倫敦的<strong>沃克斯豪爾橋</strong>（Vauxhall Bridge），橫跨泰晤士河。世良瑪麗就是在這裡遭到伏擊。
+      <span class="credit">Photo: Acabashi · CC BY-SA 4.0 · Wikimedia Commons（已縮圖）</span></figcaption>
+  </figure>
+  <p>世良真純的媽媽<strong>世良瑪麗</strong>，被人用「你失蹤的丈夫要見你」的理由騙到這座橋上。等在那裡的其實是<strong>苦艾酒</strong>喬裝的伏擊。</p>
+  <p>瑪麗中了 APTX 4869、掉進泰晤士河，但活了下來——然後<strong>縮成國中生的樣子</strong>。</p>
+  <p>幾個月後，她在電視上看倫敦的網球比賽轉播，聽見一個小男孩自稱「<strong>福爾摩斯的門徒</strong>」——那是十年前工藤新一對她講過的、一模一樣的話。她就這樣認出了柯南。</p>
+</section>
+
+<!-- ===== 年表 ===== -->
 <section id="timeline">
   <p class="kicker">完整年表</p>
   <h2>從 98 年前到現在</h2>
-  <p>下面可以自己切換要看哪幾種。想只看「漫畫真的畫出來」的部分，就按<strong>只看確定的</strong>。</p>
+  <p>下面可以自己切換。想只看「我敢請你去翻書對證」的部分，就按 <strong>📖 只看有話數的</strong>。</p>
 
   <div class="controls">
     <div class="chips">
-      <button class="chip" data-tier="confirmed" aria-pressed="true">● 確定<span class="n" id="n-confirmed"></span></button>
-      <button class="chip" data-tier="inferred" aria-pressed="true">○ 推算<span class="n" id="n-inferred"></span></button>
-      <button class="chip" data-tier="disputed" aria-pressed="true">◌ 沒把握<span class="n" id="n-disputed"></span></button>
+      <button class="chip" data-tier="confirmed" aria-pressed="true">◆ 確定<span class="n" id="n-confirmed"></span></button>
+      <button class="chip" data-tier="inferred" aria-pressed="true">◇ 推算<span class="n" id="n-inferred"></span></button>
+      <button class="chip" data-tier="disputed" aria-pressed="true">○ 沒把握<span class="n" id="n-disputed"></span></button>
     </div>
     <div class="row2">
       <input class="search" id="q" type="search" placeholder="找找看：蘭姆、赤井、鏡子…" autocomplete="off">
-      <button class="mini" id="only-confirmed">只看確定的</button>
+      <button class="mini" id="only-file" aria-pressed="false">📖 只看有話數的</button>
       <button class="mini" id="reset">全部</button>
       <span class="count" id="count"></span>
     </div>
@@ -421,36 +473,42 @@
   <p class="empty" id="empty">沒有符合的條目。</p>
 </section>
 
-<!-- ===================== 結語 ===================== -->
+<!-- ===== 結語 ===== -->
 <section id="lesson">
   <p class="kicker">最後</p>
   <h2>為什麼這份年表要這麼囉唆？</h2>
   <div class="grid2">
-    <div class="mini-card"><h4>六成其實是推算的</h4>
-      <p>整份年表 48 條，只有 16 條是漫畫明講的。其他大多是粉絲從角色年齡、學年、對白裡算出來的。</p></div>
-    <div class="mini-card"><h4>算錯會一路傳下去</h4>
-      <p>像「50 年前 vs 67 年前」那個少算 17 年的錯誤，一旦被抄進別的網站，就會一直錯下去。</p></div>
-    <div class="mini-card"><h4>查得到出處才算數</h4>
-      <p>所以「確定」那一層，我們盡量寫出是漫畫第幾集第幾話——你可以自己去翻，不用相信我。</p></div>
-    <div class="mini-card"><h4>不知道就說不知道</h4>
-      <p>有 7 條查不到話數，就老實寫「待補」。用猜的填進去，比空著更糟糕。</p></div>
+    <div class="mini-card"><h4>五成以上是推算的</h4><p>整份年表 50 條，只有 19 條是漫畫明講的。其他大多是從角色年齡、學年、對白裡算出來的。</p></div>
+    <div class="mini-card"><h4>真正能翻書的更少</h4><p>19 條「確定」裡，只有 9 條寫得出第幾集第幾話。剩下的我沒看過原文，只能標成「轉述」。</p></div>
+    <div class="mini-card"><h4>算錯會一路傳下去</h4><p>像「50 年前 vs 67 年前」那個少算 17 年的錯，一旦被抄進別的網站，就會一直錯下去。</p></div>
+    <div class="mini-card"><h4>不知道就說不知道</h4><p>有 10 條查不到話數，就老實寫「待補」。用猜的填進去，比空著更糟糕。</p></div>
   </div>
 </section>
 
 <footer>
+  <p id="hits-line" hidden>👀 這個頁面被看過 <strong id="hits">—</strong> 次</p>
+
   <h3>這次查證的依據</h3>
   <ul>
     <li><a href="https://www.detectiveconanworld.com/wiki/Timeline">Detective Conan Wiki — Timeline</a></li>
     <li><a href="https://conan-zukai.com/">名探偵コナン考察・図解</a></li>
   </ul>
 
-  <h3>圖片說明</h3>
-  <p>本頁所有圖都是<strong>為這個網站原創繪製</strong>的示意圖，沒有使用漫畫或動畫的畫面。上述兩個參考網站的圖片皆有著作權保護（conan-zukai.com 標示 All rights reserved；Detective Conan Wiki 的圖片版權屬青山剛昌／小學館／TMS・讀賣電視台），未取得授權，因此一張都沒有轉載。</p>
+  <h3>圖片來源與授權</h3>
+  <p>本頁的<strong>圖解（SVG）全部為本站原創繪製</strong>。照片則取自 Wikimedia Commons 的自由授權素材，均已註明作者與授權：</p>
+  <table>
+    <tr><td>將棋角行</td><td>Luffykudo</td><td>CC BY-SA 4.0</td></tr>
+    <tr><td>卡式錄音帶</td><td>Inpriva</td><td>CC0</td></tr>
+    <tr><td>軟碟片</td><td>George Chernilevsky</td><td>Public domain</td></tr>
+    <tr><td>沃克斯豪爾橋</td><td>Acabashi</td><td>CC BY-SA 4.0</td></tr>
+  </table>
+  <p>照片僅做網頁顯示用的縮圖，未做其他修改，原始授權不變。</p>
+  <p><strong>本站沒有使用任何漫畫或動畫的畫面。</strong>前述兩個查證來源的圖片皆受著作權保護（conan-zukai.com 標示 All rights reserved；Detective Conan Wiki 的圖片版權屬青山剛昌／小學館／TMS・讀賣電視台），未取得授權，因此一張都沒有轉載。</p>
 
   <h3>完整資料</h3>
   <ul>
-    <li><a href="./docs/03_查證報告.md">查證報告</a>　<li><a href="./docs/04_分層年表.md">分層年表（含話數）</a></li>
-    <li><a href="./docs/02_來源等級標註.md">來源等級標註</a>　<li><a href="./docs/05_全文改寫版.md">完整分析（給大人看的版本）</a></li>
+    <li><a href="./docs/03_查證報告.md">查證報告</a>｜<a href="./docs/04_分層年表.md">分層年表（含話數）</a></li>
+    <li><a href="./docs/02_來源等級標註.md">來源等級標註</a>｜<a href="./docs/05_全文改寫版.md">完整分析（給大人看的版本）</a></li>
     <li><a href="./README.md">專案說明</a></li>
   </ul>
 
@@ -461,34 +519,25 @@
 
 <script>
 /* ---------- 鏡子密碼 ---------- */
-const WORD = "PUTONMASCARA".split("");        // PUT ON MASCARA
-const GAPS = {3:1, 5:1};                       // 視覺分隔位置
-const CUT  = new Set([0,2,3,4]);               // P(0) T(2) O(3) N(4)
-const STEPS = [
-  {label:"1. 鏡子原本的字", text:"鏡子上寫著 PUT ON MASCARA，意思是「塗睫毛膏」。這是一面普通的化妝鏡。", mode:"none"},
-  {label:"2. 剪掉 4 個字母", text:"羽田浩司用剪刀剪掉了 P、T、O、N 這四個字母。剪掉的丟了，留下的還在鏡子上。", mode:"cut"},
-  {label:"3. 剩下 8 個字母", text:"鏡子上剩下 U M A S C A R A。這 8 個字母，就是他真正想留下的東西。", mode:"keep"},
-  {label:"4. 大家的第一個答案", text:"重新排一排 → ASACA RUM（淺香・蘭姆）。看起來像在指認兇手。警察和組織都這樣讀，追錯了十七年。", mode:"asaca"},
-  {label:"5. 真正的答案", text:"工藤優作發現：不要拆成兩個字，連起來讀 → CARASUMA，就是「烏丸」，組織真正的老大。", mode:"carasuma"}
-];
-const REARR = {asaca:"ASACA RUM".split(""), carasuma:"CARASUMA".split("")};
-
-const tilesEl=document.getElementById('tiles'), stepText=document.getElementById('steptext'), stepBar=document.getElementById('stepbar');
-
+const WORD="PUTONMASCARA".split(""), GAPS={3:1,5:1}, CUT=new Set([0,2,3,4]);
+const STEPS=[
+ {label:"1. 鏡子原本的字",text:"鏡子上寫著 PUT ON MASCARA，意思是「塗睫毛膏」。這是一面普通的化妝鏡。",mode:"none"},
+ {label:"2. 剪掉 4 個字母",text:"羽田浩司用剪刀剪掉了 P、T、O、N 這四個字母。剪掉的丟了，留下的還在鏡子上。",mode:"cut"},
+ {label:"3. 剩下 8 個字母",text:"鏡子上剩下 U M A S C A R A。這 8 個字母，就是他真正想留下的東西。",mode:"keep"},
+ {label:"4. 大家的第一個答案",text:"重新排一排 → ASACA RUM（淺香・蘭姆）。看起來像在指認兇手。警察和組織都這樣讀，追錯了十七年。",mode:"asaca"},
+ {label:"5. 真正的答案",text:"工藤優作發現：不要拆成兩個字，連起來讀 → CARASUMA，就是「烏丸」，組織真正的老大。",mode:"carasuma"}];
+const REARR={asaca:"ASACA RUM".split(""),carasuma:"CARASUMA".split("")};
+const tilesEl=document.getElementById('tiles'),stepText=document.getElementById('steptext'),stepBar=document.getElementById('stepbar');
 function render(i){
   const s=STEPS[i]; tilesEl.innerHTML='';
   if(s.mode==='asaca'||s.mode==='carasuma'){
-    REARR[s.mode].forEach(ch=>{
-      const d=document.createElement('div');
-      if(ch===' '){d.className='tile gap';}
-      else{d.className='tile keep';d.textContent=ch;}
-      tilesEl.appendChild(d);
-    });
+    REARR[s.mode].forEach(ch=>{const d=document.createElement('div');
+      if(ch===' ')d.className='tile gap'; else{d.className='tile keep';d.textContent=ch;} tilesEl.appendChild(d);});
   }else{
     WORD.forEach((ch,idx)=>{
       const d=document.createElement('div'); d.className='tile'; d.textContent=ch;
       if(s.mode==='cut'&&CUT.has(idx)) d.classList.add('cut');
-      if(s.mode==='keep'){ if(CUT.has(idx)){d.style.display='none';} else {d.classList.add('keep');} }
+      if(s.mode==='keep'){ if(CUT.has(idx)) d.style.display='none'; else d.classList.add('keep'); }
       tilesEl.appendChild(d);
       if(GAPS[idx]&&s.mode!=='keep'){const g=document.createElement('div');g.className='tile gap';tilesEl.appendChild(g);}
     });
@@ -499,100 +548,107 @@ function render(i){
 STEPS.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.label;b.onclick=()=>render(i);stepBar.appendChild(b);});
 render(0);
 
-/* ---------- 年表資料（已對照 Detective Conan Wiki Timeline 校正） ---------- */
+/* ---------- 年表 ----------
+   t = 確定程度  confirmed / inferred / disputed
+   s = 出處強度  file（有話數）/ line（有台詞）/ claim（僅轉述）      */
 const DATA=[
 {era:"很久很久以前（98–50 年前）",items:[
- {y:"98 年前",t:"disputed",x:"<b>Amanda Hughes</b> 出生",w:"漫畫沒說過她幾歲，這個數字是粉絲反推的。"},
- {y:"85 年前",t:"inferred",x:"Misae Yamamura 出生"},
- {y:"72 年前",t:"inferred",x:"鈴木次郎吉出生"},
- {y:"71 年前",t:"inferred",x:"枡山憲三（皮斯可）出生"},
- {y:"67 年前",t:"confirmed",x:"<b>Amanda Hughes</b> 在烏丸蓮耶的生日宴上，見到<b>當時還是小孩</b>的蘭姆",ep:"話數待補",todo:true,
-  f:"<b>已修正：</b>之前寫成「幹部級特工蘭姆」是錯的。Amanda 的原話是「當時還是個孩子，卻被用一個奇怪的綽號叫著」。<br>「蘭姆」這個代號是<b>從他爸爸那裡繼承來的</b>——組織裡目前只知道這一個世襲代號。"},
- {y:"61 年前",t:"inferred",x:"Konosuke Jii 出生",w:"怪盜基德那條線的角色。"},
- {y:"60 年前",t:"inferred",x:"鈴木財閥創立"},
- {y:"56 年前",t:"inferred",x:"小田切敏郎出生"},
- {y:"54 年前",t:"inferred",x:"松本清長、<b>宮野厚司</b>出生"},
- {y:"53 年前",t:"disputed",x:"<b>世良瑪麗</b>出生",w:"瑪麗後來也被藥變小了，她真正幾歲是作品故意不講的謎。"},
- {y:"52 年前",t:"inferred",x:"阿笠博士出生"},
- {y:"51 年前",t:"inferred",x:"鈴木史郎出生"},
- {y:"50 年前",t:"confirmed",x:"<b>烏丸蓮耶之死</b>",ep:"漫畫 30 集 File 4–7／動畫 219 話（黃昏之館，烏丸這個名字第一次出現）",
+ {y:"98 年前",t:"disputed",s:"claim",x:"<b>Amanda Hughes</b> 出生",w:"漫畫沒說過她幾歲，這個數字是粉絲反推的。"},
+ {y:"85 年前",t:"inferred",s:"claim",x:"Misae Yamamura 出生"},
+ {y:"72 年前",t:"inferred",s:"claim",x:"鈴木次郎吉出生"},
+ {y:"71 年前",t:"inferred",s:"claim",x:"枡山憲三（皮斯可）出生"},
+ {y:"67 年前",t:"confirmed",s:"line",x:"<b>Amanda Hughes</b> 在烏丸蓮耶的生日宴上，見到<b>當時還是小孩</b>的蘭姆",ep:"話數待補",todo:true,
+  f:"<b>查到的原句：</b>「大約 50 年前，在一位日本大富豪的生日派對上見過面」「<b>當時還是個孩子</b>，卻被用一個奇怪的綽號叫著……是叫『蘭姆』吧？」<br>所以標成 <b>◆ 💬</b>：漫畫確實講了，我也有原句，但還沒查到是第幾話。<br>另外，「蘭姆」這個代號是<b>從他爸爸那裡繼承來的</b>——組織裡目前只知道這一個世襲代號。"},
+ {y:"61 年前",t:"inferred",s:"claim",x:"Konosuke Jii 出生",w:"怪盜基德那條線的角色。"},
+ {y:"60 年前",t:"inferred",s:"claim",x:"鈴木財閥創立"},
+ {y:"56 年前",t:"inferred",s:"claim",x:"小田切敏郎出生"},
+ {y:"54 年前",t:"inferred",s:"claim",x:"松本清長、<b>宮野厚司</b>出生"},
+ {y:"53 年前",t:"disputed",s:"claim",x:"<b>世良瑪麗</b>出生",w:"瑪麗後來也被藥變小了，她真正幾歲是作品故意不講的謎。"},
+ {y:"52 年前",t:"inferred",s:"claim",x:"阿笠博士出生"},
+ {y:"51 年前",t:"inferred",s:"claim",x:"鈴木史郎出生"},
+ {y:"50 年前",t:"confirmed",s:"file",x:"<b>烏丸蓮耶之死</b>",ep:"漫畫 30 集 File 4–7／動畫 219 話（黃昏之館，烏丸這個名字第一次出現）",
   f:"<b>依 Detective Conan Wiki 修正：</b>該站直接寫「Death of Renya Karasuma」（死亡），而非之前版本的「失蹤並推定死亡」。"},
- {y:"50 年前",t:"inferred",x:"阿笠栗介之死；<b>黑田兵衛</b>出生"}
+ {y:"50 年前",t:"inferred",s:"claim",x:"阿笠栗介之死；<b>黑田兵衛</b>出生"}
 ]},
 {era:"上一代的故事（50–18 年前）",items:[
- {y:"41 年前",t:"inferred",x:"中森銀三出生",w:"怪盜基德線。"},
- {y:"40 年前",t:"confirmed",x:"阿笠博士和 Fusae Campbell 認識，對方留了一封信說<b>十年後再見</b>",ep:"漫畫 40 集 File 7「博士的初戀」／動畫 421–422 話"},
- {y:"40 年前",t:"inferred",x:"中森綠子出生"},
- {y:"39 年前",t:"inferred",x:"Iwao Ida 出生"},
- {y:"37 年前",t:"disputed",x:"工藤有希子、Jun Omura、<b>若狹留美</b>出生",
+ {y:"41 年前",t:"inferred",s:"claim",x:"中森銀三出生",w:"怪盜基德線。"},
+ {y:"40 年前",t:"confirmed",s:"file",x:"阿笠博士和 Fusae Campbell 認識，對方留了一封信說<b>十年後再見</b>",ep:"漫畫 40 集 File 7「博士的初戀」／動畫 421–422 話"},
+ {y:"40 年前",t:"inferred",s:"claim",x:"中森綠子出生"},
+ {y:"39 年前",t:"inferred",s:"claim",x:"Iwao Ida 出生"},
+ {y:"37 年前",t:"disputed",s:"claim",x:"工藤有希子、Jun Omura、<b>若狹留美</b>出生",
   f:"<b>依 Detective Conan Wiki 修正：</b>之前把<b>工藤優作</b>也放在這一年是錯的。該站把工藤優作與黑羽盜一標為「<b>37+ 年前</b>」，並註明確切年齡未曾明示。",
   w:"另外，「若狹留美就是淺香」目前只是粉絲推測，漫畫還沒證實。"},
- {y:"35 年前",t:"inferred",x:"大和敢助、諸伏高明出生"},
- {y:"33 年前",t:"inferred",x:"九條玲子出生"},
- {y:"32 年前",t:"inferred",x:"小嶋元次、Yoshiaki Hara、<b>赤井秀一</b>出生"},
- {y:"30 年前",t:"inferred",x:"伊織無我、風見裕也出生；<b>宮野厚司離家去做研究</b>；<b>本堂伊森進入 CIA</b>；帝丹小學蓋好"},
- {y:"約 25 年前",t:"inferred",x:"烏丸集團買下白鳩製藥使其倒閉，宮野夫婦改開診所"},
- {y:"20 年前",t:"confirmed",x:"<b>苦艾酒殺害 Jodie Starling 的父親</b>",ep:"漫畫 42 集（Jodie 靠一句「A secret makes a woman woman」和指紋比對認出兇手）"},
- {y:"20 年前",t:"inferred",x:"越水七槻出生；目暮綠與目暮十三在一次車禍臨檢中認識"},
- {y:"18 年前",t:"confirmed",x:"<b>宮野志保</b>（後來的灰原哀）、京極真、塚本和美、真田高晴出生；<b>佐藤正義死於車禍</b>",ep:"話數待補",todo:true,
-  f:"<b>依 Detective Conan Wiki 補上：</b>之前只列了宮野志保，而且標成「19–18 年前（推算）」。該站明確列在 18 年前，並多了三個人的出生與佐藤正義之死。"},
- {y:"18 年前",t:"inferred",x:"黑羽盜一在巴黎認識千影，第一代怪盜基德登場"},
- {y:"約 18 年前",t:"inferred",x:"<b>宮野夫婦死於研究室火災</b>"}
+ {y:"35 年前",t:"inferred",s:"claim",x:"大和敢助、諸伏高明出生"},
+ {y:"33 年前",t:"inferred",s:"claim",x:"九條玲子出生"},
+ {y:"32 年前",t:"inferred",s:"claim",x:"小嶋元次、Yoshiaki Hara、<b>赤井秀一</b>出生"},
+ {y:"30 年前",t:"inferred",s:"claim",x:"伊織無我、風見裕也出生；<b>宮野厚司離家去做研究</b>；<b>本堂伊森進入 CIA</b>；帝丹小學蓋好"},
+ {y:"約 25 年前",t:"inferred",s:"claim",x:"烏丸集團買下白鳩製藥使其倒閉，宮野夫婦改開診所"},
+ {y:"20 年前",t:"confirmed",s:"file",x:"<b>苦艾酒殺害 Jodie Starling 的父親</b>",ep:"漫畫 42 集（Jodie 靠一句「A secret makes a woman woman」和指紋比對認出兇手）"},
+ {y:"20 年前",t:"inferred",s:"claim",x:"越水七槻出生；目暮綠與目暮十三在一次車禍臨檢中認識"},
+ {y:"18 年前",t:"confirmed",s:"claim",x:"<b>宮野志保</b>（後來的灰原哀）、京極真、塚本和美、真田高晴出生；<b>佐藤正義死於車禍</b>",ep:"話數待補",todo:true,
+  f:"<b>依 Detective Conan Wiki 補上：</b>之前只列了宮野志保，而且標成「19–18 年前（推算）」。該站明確列在 18 年前，並多了三個人的出生與佐藤正義之死。<br>標成 <b>◆ 📄</b>：資料站說得很明確，但我沒看過漫畫原文。"},
+ {y:"18 年前",t:"inferred",s:"claim",x:"黑羽盜一在巴黎認識千影，第一代怪盜基德登場"},
+ {y:"約 18 年前",t:"inferred",s:"claim",x:"<b>宮野夫婦死於研究室火災</b>"}
 ]},
 {era:"命案那一年（17 年前）",items:[
- {y:"17 年前",t:"confirmed",x:"<b>Juke 飯店雙屍案</b>：羽田浩司與 Amanda Hughes 在美國遇害",
+ {y:"17 年前",t:"confirmed",s:"file",x:"<b>Juke 飯店雙屍案</b>：羽田浩司與 Amanda Hughes 在美國遇害",
   ep:"前段：漫畫 89–90 集「17 年前的同一犯罪現場」｜完整真相：漫畫 104 集 File 4–7「17 年前的真相」"},
- {y:"17 年前",t:"confirmed",x:"羽田浩司留下鏡子暗號：剪掉 <code>PTON</code>，留下 <code>UMASCARA</code>",
+ {y:"17 年前",t:"confirmed",s:"file",x:"羽田浩司留下鏡子暗號：剪掉 <code>PTON</code>，留下 <code>UMASCARA</code>",
   ep:"同上；<code>CARASUMA</code> 的正解由工藤優作提出",
   f:"<b>已修正：</b>之前把「剪掉」和「留下」<b>完全講反</b>，還多寫了一個 O（POTON）。正確是剪掉 4 個、留下 8 個。"},
- {y:"17 年前",t:"confirmed",x:"工藤新一（5/4）、黑羽快斗（6/21）、中森青子、世良真純出生",ep:"話數待補",todo:true,
+ {y:"17 年前",t:"confirmed",s:"claim",x:"工藤新一（5/4）、黑羽快斗（6/21）、中森青子、世良真純出生",ep:"話數待補",todo:true,
   w:"命案和新一出生同一年。這是作者故意的安排——新一和這樁懸案「同齡」。"},
- {y:"17 年前",t:"inferred",x:"蘭姆右眼受傷；將棋的<b>角行</b>棋子失蹤；黑田兵衛陷入昏迷",
+ {y:"17 年前",t:"inferred",s:"claim",x:"蘭姆右眼受傷；將棋的<b>角行</b>棋子失蹤；黑田兵衛陷入昏迷",
   w:"之前寫成西洋棋的「主教（bishop）」是英譯轉換造成的誤譯，日文原作是將棋的角行。"}
 ]},
 {era:"最近這些年（16 年前至今）",items:[
- {y:"16 年前",t:"confirmed",x:"毛利蘭出生",ep:"話數待補",todo:true},
- {y:"15 年前",t:"confirmed",x:"松本清長在追捕連續殺人犯時，<b>左眼上方</b>留下疤痕",ep:"話數待補",todo:true,
+ {y:"16 年前",t:"confirmed",s:"claim",x:"毛利蘭出生",ep:"話數待補",todo:true},
+ {y:"15 年前",t:"confirmed",s:"claim",x:"松本清長在追捕連續殺人犯時，<b>左眼上方</b>留下疤痕",ep:"話數待補",todo:true,
   f:"<b>依 Detective Conan Wiki 補正：</b>該站明確寫是「左眼上方」，之前只寫「臉部傷疤」。"},
- {y:"13 年前",t:"inferred",x:"工藤新一和毛利蘭第一次見面"},
- {y:"10 年前",t:"confirmed",x:"新一在海邊對世良瑪麗和赤井秀一說自己是「<b>福爾摩斯的門徒</b>」",ep:"話數待補",todo:true,
+ {y:"13 年前",t:"inferred",s:"claim",x:"工藤新一和毛利蘭第一次見面"},
+ {y:"10 年前",t:"confirmed",s:"claim",x:"新一在海邊對世良瑪麗和赤井秀一說自己是「<b>福爾摩斯的門徒</b>」",ep:"話數待補",todo:true,
   w:"十年後，瑪麗在倫敦的電視轉播裡聽見柯南講一模一樣的話，因此認出他就是新一。"},
- {y:"10 年前",t:"confirmed",x:"<b>黑羽盜一被 Snake 殺害</b>，怪盜基德從此消失",ep:"話數待補",todo:true,
+ {y:"10 年前",t:"confirmed",s:"claim",x:"<b>黑羽盜一被 Snake 殺害</b>，怪盜基德從此消失",ep:"話數待補",todo:true,
   f:"<b>已修正：</b>之前寫成「Snake 組織」。<b>Snake 是一個人的代號</b>，不是組織名。"},
- {y:"10 年前",t:"inferred",x:"新一和蘭進帝丹小學；妃英理第一次出庭；小五郎和英理分居；本堂瑛海加入 CIA；赤井家最後一次團聚"},
- {y:"7 年前",t:"confirmed",x:"<b>萩原研二在公寓爆炸中殉職（11 月 7 日）</b>",ep:"話數待補",todo:true,
+ {y:"10 年前",t:"inferred",s:"claim",x:"新一和蘭進帝丹小學；妃英理第一次出庭；小五郎和英理分居；本堂瑛海加入 CIA；赤井家最後一次團聚"},
+ {y:"7 年前",t:"confirmed",s:"claim",x:"<b>萩原研二在公寓爆炸中殉職（11 月 7 日）</b>",ep:"話數待補",todo:true,
   f:"<b>依 Detective Conan Wiki 補上：</b>之前的版本<b>整年遺漏</b>。萩原是警察學校五人組之一，也是松田陣平最好的朋友。"},
- {y:"8–5 年前",t:"inferred",x:"赤井秀一進入 FBI"},
- {y:"5 年前",t:"confirmed",x:"<b>赤井秀一開始潛入黑衣組織</b>（化名諸星大），並與宮野明美交往；此時宮野志保已在組織當研究員",ep:"話數待補",todo:true,
+ {y:"8–5 年前",t:"inferred",s:"claim",x:"赤井秀一進入 FBI"},
+ {y:"5 年前",t:"confirmed",s:"claim",x:"<b>赤井秀一開始潛入黑衣組織</b>（化名諸星大），並與宮野明美交往；此時宮野志保已在組織當研究員",ep:"話數待補",todo:true,
   f:"<b>依 Detective Conan Wiki 補正：</b>該站寫的是赤井「開始潛入」，而不只是「與明美相遇」。"},
- {y:"3 年前",t:"confirmed",x:"<b>松田陣平被炸彈炸死（11 月 7 日）</b>；新一和服部平次在滑雪場相遇",ep:"話數待補",todo:true,
+ {y:"3 年前",t:"confirmed",s:"claim",x:"<b>松田陣平被炸彈炸死（11 月 7 日）</b>；新一和服部平次在滑雪場相遇",ep:"話數待補",todo:true,
   f:"<b>依 Detective Conan Wiki 補上：</b>之前<b>完全沒有這一條</b>。松田和萩原死在<b>同一個日期</b>，相隔四年。"},
- {y:"3 年前",t:"inferred",x:"赤井秀一的 FBI 身分曝光，被迫脫離組織"},
- {y:"2–3 年前",t:"inferred",x:"<b>苦艾酒</b>假扮赤井務武接近世良瑪麗；工藤夫婦搬去美國"},
- {y:"1 年前",t:"inferred",x:"雪莉、琴酒、伏特加到美國調查；<b>伊達航死於車禍</b>"},
- {y:"現在",t:"confirmed",x:"<b>工藤新一被灌下 APTX 4869，變成江戶川柯南</b>",ep:"漫畫 File 1／動畫第 1 話"}
+ {y:"3 年前",t:"inferred",s:"claim",x:"赤井秀一的 FBI 身分曝光，被迫脫離組織"},
+ {y:"2–3 年前",t:"inferred",s:"claim",x:"<b>苦艾酒</b>假扮赤井務武接近世良瑪麗；工藤夫婦搬去美國"},
+ {y:"1 年前",t:"inferred",s:"claim",x:"雪莉、琴酒、伏特加到美國調查；<b>伊達航死於車禍</b>"},
+ {y:"現在",t:"confirmed",s:"file",x:"<b>工藤新一被灌下 APTX 4869，變成江戶川柯南</b>",ep:"漫畫 File 1／動畫第 1 話"}
 ]},
 {era:"故事進行中：三個關鍵揭曉",items:[
- {y:"揭曉",t:"confirmed",x:"黑衣組織的老大是<b>烏丸蓮耶</b>",ep:"漫畫 95 集 File 5／動畫 942 話"},
- {y:"揭曉",t:"confirmed",x:"<b>蘭姆</b>的真面目是<b>脇田兼則</b>",ep:"漫畫 100 集 File 1066／動畫 1079 話"},
- {y:"揭曉",t:"confirmed",x:"17 年前羽田浩司案的完整真相",ep:"漫畫 104 集 File 4–7"}
+ {y:"揭曉",t:"confirmed",s:"file",x:"黑衣組織的老大是<b>烏丸蓮耶</b>",ep:"漫畫 95 集 File 5／動畫 942 話"},
+ {y:"揭曉",t:"confirmed",s:"file",x:"<b>蘭姆</b>的真面目是<b>脇田兼則</b>",ep:"漫畫 100 集 File 1066／動畫 1079 話"},
+ {y:"揭曉",t:"confirmed",s:"file",x:"17 年前羽田浩司案的完整真相",ep:"漫畫 104 集 File 4–7"}
 ]}];
 
-const TAG={confirmed:"● 確定",inferred:"○ 推算",disputed:"◌ 沒把握"};
+const TAG={confirmed:"◆ 確定",inferred:"◇ 推算",disputed:"○ 沒把握"};
+const SRC={file:{icon:"📖 有話數",tip:"寫得出第幾集第幾話，你可以自己去翻書對證"},
+           line:{icon:"💬 有台詞",tip:"查到了角色講的原句，但還沒找到是第幾話"},
+           claim:{icon:"📄 轉述",tip:"是別的資料站說的，我沒看過漫畫原文"}};
 const tl=document.getElementById('tl');
 DATA.forEach(g=>{
   const sec=document.createElement('div'); sec.className='era-block';
   const h=document.createElement('div'); h.className='era';
-  h.innerHTML=`<h3>${g.era}</h3><span>${g.items.length} 條</span>`;
-  sec.appendChild(h);
+  h.innerHTML=`<h3>${g.era}</h3><span>${g.items.length} 條</span>`; sec.appendChild(h);
   const tr=document.createElement('div'); tr.className='track';
   g.items.forEach(it=>{
-    const el=document.createElement('article'); el.className='ev'; el.dataset.tier=it.t;
+    const el=document.createElement('article'); el.className='ev';
+    el.dataset.tier=it.t; el.dataset.src=it.s;
     let m='';
     if(it.ep) m+=`<span class="ep${it.todo?' todo':''}">${it.ep}</span>`;
     if(it.f)  m+=`<div class="note f">${it.f}</div>`;
     if(it.w)  m+=`<div class="note w">${it.w}</div>`;
-    el.innerHTML=`<div class="head"><span class="yr">${it.y}</span><span class="tag">${TAG[it.t]}</span></div>`+
+    el.innerHTML=`<div class="head"><span class="yr">${it.y}</span>`+
+                 `<span class="tag">${TAG[it.t]}</span>`+
+                 `<span class="src" data-s="${it.s}" title="${SRC[it.s].tip}">${SRC[it.s].icon}</span></div>`+
                  `<p class="title">${it.x}</p>`+(m?`<div class="meta">${m}</div>`:'');
     el.dataset.text=el.textContent.toLowerCase();
     tr.appendChild(el);
@@ -600,18 +656,20 @@ DATA.forEach(g=>{
   sec.appendChild(tr); tl.appendChild(sec);
 });
 
-const chips=[...document.querySelectorAll('.chip')], q=document.getElementById('q'),
-      cnt=document.getElementById('count'), emp=document.getElementById('empty');
+const chips=[...document.querySelectorAll('.chip')],q=document.getElementById('q'),
+      cnt=document.getElementById('count'),emp=document.getElementById('empty'),
+      onlyFile=document.getElementById('only-file');
 ['confirmed','inferred','disputed'].forEach(t=>{
-  document.getElementById('n-'+t).textContent=document.querySelectorAll(`.ev[data-tier="${t}"]`).length;
-});
+  document.getElementById('n-'+t).textContent=document.querySelectorAll(`.ev[data-tier="${t}"]`).length;});
 function apply(){
   const on=new Set(chips.filter(c=>c.getAttribute('aria-pressed')==='true').map(c=>c.dataset.tier));
-  const term=q.value.trim().toLowerCase(); let shown=0;
+  const term=q.value.trim().toLowerCase();
+  const fileOnly=onlyFile.getAttribute('aria-pressed')==='true';
+  let shown=0;
   document.querySelectorAll('.era-block').forEach(sec=>{
     let n=0;
     sec.querySelectorAll('.ev').forEach(ev=>{
-      const ok=on.has(ev.dataset.tier)&&(!term||ev.dataset.text.includes(term));
+      const ok=on.has(ev.dataset.tier)&&(!fileOnly||ev.dataset.src==='file')&&(!term||ev.dataset.text.includes(term));
       ev.style.display=ok?'':'none'; if(ok){shown++;n++}
     });
     sec.style.display=n?'':'none';
@@ -623,11 +681,13 @@ function apply(){
 chips.forEach(c=>c.addEventListener('click',()=>{
   c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');apply();}));
 q.addEventListener('input',apply);
-document.getElementById('only-confirmed').onclick=()=>{
-  chips.forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.tier==='confirmed')));q.value='';apply();};
+onlyFile.onclick=()=>{onlyFile.setAttribute('aria-pressed',
+  onlyFile.getAttribute('aria-pressed')==='true'?'false':'true');apply();};
 document.getElementById('reset').onclick=()=>{
-  chips.forEach(c=>c.setAttribute('aria-pressed','true'));q.value='';apply();};
+  chips.forEach(c=>c.setAttribute('aria-pressed','true'));
+  onlyFile.setAttribute('aria-pressed','false'); q.value=''; apply();};
 apply();
 </script>
+<!-- 瀏覽計數器：待接上 Supabase 後啟用 -->
 </body>
 </html>

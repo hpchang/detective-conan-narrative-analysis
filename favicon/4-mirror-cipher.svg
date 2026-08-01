@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#1f3a4d"/>
+  <rect x="13" y="11" width="38" height="30" rx="4" fill="#dbe8f0"/>
+  <text x="32" y="32" text-anchor="middle" font-family="ui-monospace,Menlo,monospace"
+        font-size="15" font-weight="800" fill="#1f3a4d" letter-spacing="1">RUM</text>
+  <path d="M20 47h24M24 54h16" stroke="#7fb3d9" stroke-width="4" stroke-linecap="round"/>
+</svg>
