@@ -3,40 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
 <title>名偵探柯南 · 分層年表</title>
-<link rel="icon" href="./favicon/1-magnifier.svg" type="image/svg+xml">
+<link rel="icon" href="./favicon/2-magnifier-clue.svg" type="image/svg+xml">
 <style>
+  /* 固定深色主題（純黑底）。不跟隨系統配色。 */
   :root{
-    --bg:#fdfcfa; --surface:#fff; --surface-2:#f4f1ec; --border:#e4dfd7;
-    --text:#1c1a18; --dim:#6d6760;
-    --c1:#c0432c; --c1bg:#fdefeb; --c2:#3a6d94; --c2bg:#ecf3f9;
-    --c3:#8a7530; --c3bg:#faf5e6; --org:#2b2b33; --orgbg:#ecebee;
-    --fbi:#2f6b46; --fbibg:#eaf5ee; --cia:#7a4a9c; --ciabg:#f3edf9;
-    --psb:#1f5f7a; --psbbg:#e9f3f7; --spine:#dcd6cc;
+    color-scheme:dark;
+    --bg:#000000; --surface:#121216; --surface-2:#1c1c22; --border:#2e2e37;
+    --text:#f1eee9; --dim:#a29b92;
+    --c1:#f29076; --c1bg:#2e1c18; --c2:#8bbde2; --c2bg:#152330;
+    --c3:#dcc476; --c3bg:#282211; --org:#cfcdd8; --orgbg:#22212a;
+    --fbi:#7fce9b; --fbibg:#112318; --cia:#c8a6e6; --ciabg:#22182e;
+    --psb:#7fc3e0; --psbbg:#0f2733; --spine:#3a3844;
     --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  }
-  @media (prefers-color-scheme:dark){:root{
-    --bg:#14141a; --surface:#1d1d25; --surface-2:#26262f; --border:#33323d;
-    --text:#ece9e4; --dim:#9d968d;
-    --c1:#ef8a70; --c1bg:#2d1e1b; --c2:#82b6dc; --c2bg:#18232d;
-    --c3:#d8c072; --c3bg:#282315; --org:#c9c7d2; --orgbg:#25242c;
-    --fbi:#79c795; --fbibg:#152418; --cia:#c2a0e0; --ciabg:#231a2d;
-    --psb:#79bcd8; --psbbg:#132630; --spine:#3a3844;
-  }}
-  :root[data-theme="dark"]{
-    --bg:#14141a; --surface:#1d1d25; --surface-2:#26262f; --border:#33323d;
-    --text:#ece9e4; --dim:#9d968d; --c1:#ef8a70; --c1bg:#2d1e1b; --c2:#82b6dc;
-    --c2bg:#18232d; --c3:#d8c072; --c3bg:#282315; --org:#c9c7d2; --orgbg:#25242c;
-    --fbi:#79c795; --fbibg:#152418; --cia:#c2a0e0; --ciabg:#231a2d;
-    --psb:#79bcd8; --psbbg:#132630; --spine:#3a3844;
-  }
-  :root[data-theme="light"]{
-    --bg:#fdfcfa; --surface:#fff; --surface-2:#f4f1ec; --border:#e4dfd7;
-    --text:#1c1a18; --dim:#6d6760; --c1:#c0432c; --c1bg:#fdefeb; --c2:#3a6d94;
-    --c2bg:#ecf3f9; --c3:#8a7530; --c3bg:#faf5e6; --org:#2b2b33; --orgbg:#ecebee;
-    --fbi:#2f6b46; --fbibg:#eaf5ee; --cia:#7a4a9c; --ciabg:#f3edf9;
-    --psb:#1f5f7a; --psbbg:#e9f3f7; --spine:#dcd6cc;
   }
 
   *{box-sizing:border-box}
