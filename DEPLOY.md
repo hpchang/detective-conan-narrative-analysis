@@ -14,9 +14,13 @@
 gh api -X POST repos/hpchang/detective-conan-narrative-analysis/pages -f "source[branch]=main" -f "source[path]=/"
 ```
 
-## Cloudflare Pages（需在儀表板完成一次連接）
+## Cloudflare Pages（已上線）
 
-### ⚠️ 先讀這一段
+- 網址：<https://detective-conan-narrative-analysis.pages.dev>
+- 型態：**Git 連接**（`main` 分支，push 後自動部署）
+- 建置設定：Framework preset `None`、Build command 留空、Build output directory `/`
+
+### ⚠️ 為什麼當初不能先用 wrangler 部署
 
 Cloudflare Pages 專案在**建立當下**就決定型態，**事後無法互轉**：
 
@@ -52,9 +56,19 @@ Cloudflare Pages 專案在**建立當下**就決定型態，**事後無法互轉
 
 ## 兩個站台的關係
 
-兩者從**同一個 repo 的同一個分支**部署，內容一致：
+兩者從**同一個 repo 的同一個分支**部署，內容一致（已以 SHA 比對驗證）：
 
-- GitHub Pages — <https://www.hpchang.com/detective-conan-narrative-analysis/>
-- Cloudflare Pages — `https://detective-conan-narrative-analysis.pages.dev`（待設定）
+| 站台 | 網址 |
+|---|---|
+| GitHub Pages | <https://www.hpchang.com/detective-conan-narrative-analysis/> |
+| Cloudflare Pages | <https://detective-conan-narrative-analysis.pages.dev> |
 
-推送一次，兩邊都會更新（GitHub Pages 自動；Cloudflare 在完成上述連接後自動）。
+推送到 `main` 一次，兩邊都會自動更新。
+
+## GitHub App 授權範圍
+
+Cloudflare 的 GitHub App 以 **Only select repositories** 安裝，僅授權此一個 repo，
+而非預設的 All repositories（後者會授予帳號上現有與未來所有 repo 的程式碼與管理設定讀寫權）。
+
+日後若要讓 Cloudflare 存取其他 repo，到 GitHub → Settings → Applications →
+Cloudflare Workers and Pages → Repository access 追加即可。

@@ -8,7 +8,7 @@
 2. **錯誤查證** — 對照日文正典與官方資料集，找出並修正五處實質錯誤。
 3. **分層年表** — 依「事件確定性」重建時間軸，三層可切換。
 
-**線上版：[分層時間軸](./index.html)**
+**線上版**：[www.hpchang.com/detective-conan-narrative-analysis](https://www.hpchang.com/detective-conan-narrative-analysis/) · [detective-conan-narrative-analysis.pages.dev](https://detective-conan-narrative-analysis.pages.dev)
 
 ---
 
