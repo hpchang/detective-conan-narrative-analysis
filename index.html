@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>名偵探柯南 · 分層年表</title>
+<style>
+  :root{
+    --bg:#faf9f7; --surface:#fff; --surface-2:#f2f0ec;
+    --text:#1a1a1a; --text-dim:#6b6660; --border:#e2ded8;
+    --confirmed:#b8412e; --inferred:#3f6b8c; --disputed:#8a7a3c;
+    --confirmed-bg:#fdf1ee; --inferred-bg:#eef4f9; --disputed-bg:#faf6e8;
+    --spine:#d8d3cb;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#16151a; --surface:#1e1d24; --surface-2:#26252d;
+      --text:#eae7e2; --text-dim:#9a948c; --border:#33313b;
+      --confirmed:#e8836c; --inferred:#7fb3d9; --disputed:#d4bd6e;
+      --confirmed-bg:#2b1e1c; --inferred-bg:#1a242e; --disputed-bg:#282415;
+      --spine:#3a3844;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#16151a; --surface:#1e1d24; --surface-2:#26252d;
+    --text:#eae7e2; --text-dim:#9a948c; --border:#33313b;
+    --confirmed:#e8836c; --inferred:#7fb3d9; --disputed:#d4bd6e;
+    --confirmed-bg:#2b1e1c; --inferred-bg:#1a242e; --disputed-bg:#282415;
+    --spine:#3a3844;
+  }
+  :root[data-theme="light"]{
+    --bg:#faf9f7; --surface:#fff; --surface-2:#f2f0ec;
+    --text:#1a1a1a; --text-dim:#6b6660; --border:#e2ded8;
+    --confirmed:#b8412e; --inferred:#3f6b8c; --disputed:#8a7a3c;
+    --confirmed-bg:#fdf1ee; --inferred-bg:#eef4f9; --disputed-bg:#faf6e8;
+    --spine:#d8d3cb;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+       line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:2.5rem 1.25rem 5rem}
+
+  header h1{font-size:1.9rem;margin:0 0 .3rem;letter-spacing:-.01em;font-weight:700}
+  header .sub{color:var(--text-dim);font-size:.92rem;margin:0 0 .4rem}
+  header .note{color:var(--text-dim);font-size:.84rem;margin:0;font-style:italic}
+
+  /* ---- controls ---- */
+  .controls{position:sticky;top:0;z-index:20;background:var(--bg);
+            padding:1rem 0 .85rem;margin:1.75rem 0 0;border-bottom:1px solid var(--border)}
+  .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.6rem}
+  .chip{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;user-select:none;
+        border:1.5px solid var(--border);background:var(--surface);color:var(--text-dim);
+        border-radius:999px;padding:.42rem .85rem;font-size:.86rem;font-weight:600;
+        transition:all .15s ease;font-family:inherit}
+  .chip:hover{border-color:var(--text-dim)}
+  .chip .mark{font-size:.95rem;line-height:1}
+  .chip .n{font-family:var(--mono);font-size:.76rem;opacity:.75;font-weight:500}
+  .chip[aria-pressed="true"]{color:var(--text)}
+  .chip[data-tier="confirmed"][aria-pressed="true"]{border-color:var(--confirmed);background:var(--confirmed-bg);color:var(--confirmed)}
+  .chip[data-tier="inferred"][aria-pressed="true"]{border-color:var(--inferred);background:var(--inferred-bg);color:var(--inferred)}
+  .chip[data-tier="disputed"][aria-pressed="true"]{border-color:var(--disputed);background:var(--disputed-bg);color:var(--disputed)}
+  .chip[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+
+  .row2{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+  .search{flex:1;min-width:200px;padding:.45rem .75rem;border-radius:8px;
+          border:1.5px solid var(--border);background:var(--surface);color:var(--text);
+          font-family:inherit;font-size:.87rem}
+  .search:focus{outline:none;border-color:var(--text-dim)}
+  .mini{background:none;border:1.5px solid var(--border);color:var(--text-dim);
+        border-radius:8px;padding:.45rem .7rem;font-size:.8rem;cursor:pointer;
+        font-family:inherit;font-weight:600;white-space:nowrap}
+  .mini:hover{color:var(--text);border-color:var(--text-dim)}
+  .count{color:var(--text-dim);font-size:.8rem;font-family:var(--mono);white-space:nowrap}
+
+  /* ---- timeline ---- */
+  .era{margin:2.5rem 0 1rem;display:flex;align-items:baseline;gap:.7rem}
+  .era h2{font-size:1.02rem;margin:0;font-weight:700;letter-spacing:.01em}
+  .era span{color:var(--text-dim);font-size:.8rem;font-family:var(--mono)}
+
+  .track{position:relative;padding-left:2.6rem}
+  .track::before{content:"";position:absolute;left:.72rem;top:.4rem;bottom:.4rem;
+                 width:2px;background:var(--spine)}
+
+  .ev{position:relative;margin:0 0 .9rem;background:var(--surface);
+      border:1px solid var(--border);border-left-width:3px;border-radius:10px;
+      padding:.8rem 1rem .85rem;transition:opacity .18s ease}
+  .ev::before{content:"";position:absolute;left:-2.03rem;top:1.15rem;width:11px;height:11px;
+              border-radius:50%;border:2.5px solid var(--bg)}
+  .ev[data-tier="confirmed"]{border-left-color:var(--confirmed)}
+  .ev[data-tier="confirmed"]::before{background:var(--confirmed)}
+  .ev[data-tier="inferred"]{border-left-color:var(--inferred)}
+  .ev[data-tier="inferred"]::before{background:var(--inferred)}
+  .ev[data-tier="disputed"]{border-left-color:var(--disputed)}
+  .ev[data-tier="disputed"]::before{background:var(--disputed);
+              background-image:repeating-linear-gradient(45deg,transparent,transparent 2px,var(--bg) 2px,var(--bg) 3px)}
+
+  .ev .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem;margin-bottom:.25rem}
+  .yr{font-family:var(--mono);font-size:.82rem;font-weight:700;letter-spacing:-.02em}
+  .ev[data-tier="confirmed"] .yr{color:var(--confirmed)}
+  .ev[data-tier="inferred"] .yr{color:var(--inferred)}
+  .ev[data-tier="disputed"] .yr{color:var(--disputed)}
+  .tier-tag{font-size:.7rem;font-weight:700;padding:.08rem .42rem;border-radius:4px;
+            font-family:var(--mono)}
+  .ev[data-tier="confirmed"] .tier-tag{background:var(--confirmed-bg);color:var(--confirmed)}
+  .ev[data-tier="inferred"] .tier-tag{background:var(--inferred-bg);color:var(--inferred)}
+  .ev[data-tier="disputed"] .tier-tag{background:var(--disputed-bg);color:var(--disputed)}
+
+  .ev .title{font-size:.95rem;margin:0;font-weight:400}
+  .ev .title strong{font-weight:700}
+  .ev .meta{margin-top:.5rem;display:flex;flex-direction:column;gap:.3rem}
+  .ep{font-family:var(--mono);font-size:.78rem;color:var(--text-dim);
+      background:var(--surface-2);padding:.25rem .55rem;border-radius:6px;align-self:flex-start}
+  .ep.todo{opacity:.65;font-style:italic}
+  .fix,.warn{font-size:.81rem;padding:.4rem .6rem;border-radius:6px;line-height:1.5}
+  .fix{background:var(--confirmed-bg);color:var(--text);border-left:2.5px solid var(--confirmed)}
+  .warn{background:var(--disputed-bg);color:var(--text);border-left:2.5px solid var(--disputed)}
+  .fix b,.warn b{font-weight:700}
+
+  .empty{text-align:center;color:var(--text-dim);padding:3rem 1rem;font-size:.9rem;display:none}
+
+  footer{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--border);
+         color:var(--text-dim);font-size:.82rem}
+  footer h3{font-size:.88rem;color:var(--text);margin:0 0 .5rem}
+  footer ul{margin:0 0 1.2rem;padding-left:1.2rem}
+  footer li{margin-bottom:.35rem}
+  .legend{display:grid;gap:.45rem;margin-bottom:1.4rem}
+  .legend div{display:flex;gap:.55rem;align-items:flex-start}
+  .legend .k{font-family:var(--mono);font-weight:700;flex-shrink:0;min-width:5.5rem}
+  .legend .k.c{color:var(--confirmed)} .legend .k.i{color:var(--inferred)} .legend .k.d{color:var(--disputed)}
+
+  @media(max-width:560px){
+    .wrap{padding:1.75rem .9rem 4rem}
+    header h1{font-size:1.5rem}
+    .track{padding-left:1.9rem}
+    .track::before{left:.42rem}
+    .ev::before{left:-1.72rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>名偵探柯南 · 分層年表</h1>
+  <p class="sub">依「事件確定性」重建 · 三層可切換 · 譯名採台灣譯法（蘭姆／苦艾酒／黑麥威士忌／黑衣組織）</p>
+  <p class="note">48 條中有 29 條（60.4%）屬社群反推，而非作品明示。任何建立在精確年份上的推論，強度受限於最弱的那一環。</p>
+</header>
+
+<div class="controls">
+  <div class="chips">
+    <button class="chip" data-tier="confirmed" aria-pressed="true">
+      <span class="mark">◆</span>確證<span class="n" id="n-confirmed"></span></button>
+    <button class="chip" data-tier="inferred" aria-pressed="true">
+      <span class="mark">◇</span>推定<span class="n" id="n-inferred"></span></button>
+    <button class="chip" data-tier="disputed" aria-pressed="true">
+      <span class="mark">○</span>存疑<span class="n" id="n-disputed"></span></button>
+  </div>
+  <div class="row2">
+    <input class="search" id="q" type="search" placeholder="搜尋角色、事件、話數…" autocomplete="off">
+    <button class="mini" id="only-confirmed">只看確證</button>
+    <button class="mini" id="reset">全部顯示</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main id="tl"></main>
+<p class="empty" id="empty">沒有符合條件的條目。</p>
+
+<footer>
+  <h3>分層定義</h3>
+  <div class="legend">
+    <div><span class="k c">◆ 確證</span><span>作品明示，可指出具體話數或官方資料集。</span></div>
+    <div><span class="k i">◇ 推定</span><span>由劇情細節（年齡、學年、對白）反推的年份。內部一致，但作品從未直接說出這個數字。</span></div>
+    <div><span class="k d">○ 存疑</span><span>僅見於社群理論串，或不同來源的年份互相衝突。</span></div>
+  </div>
+
+  <h3>使用這份年表的三個警告</h3>
+  <ul>
+    <li><b>中文時間線有一個系統性的 17 年換算錯誤。</b>Amanda Hughes 說「大約 50 年前見過蘭姆」時，她本人正處在「17 年前」。部分中文整理直接寫成「50 年前」，漏掉了 17 年。正確為 50 + 17 = 67 年前。</li>
+    <li><b>怪盜基德線是否共用同一時間軸，本身有爭議。</b>《魔術快斗》與《名偵探柯南》是否嚴格共用時間軸，作品從未確認。</li>
+    <li><b>浮動時間軸使基準點不斷後退。</b>作品內經過時間不到一年，但現實連載已逾三十年。所有「X 年前」都相對於幾乎不移動的「故事現在」。</li>
+  </ul>
+
+  <h3>條目統計</h3>
+  <ul>
+    <li>◆ 確證 <b>16</b>｜◇ 推定 <b>29</b>｜○ 存疑 <b>3</b>｜合計 <b>48</b> 條</li>
+    <li><b>推定層佔 60.4%</b>——這是這份年表最重要的一項自我揭露。</li>
+  </ul>
+
+  <h3>◆ 層話數覆蓋率</h3>
+  <ul>
+    <li>已附話數（可獨立驗證）：<b>9</b> 條｜話數待補：<b>7</b> 條｜覆蓋率 <b>56%</b></li>
+    <li>待補者集中於「角色出生年」與「赤井秀一潛伏線」，需逐話比對，本次未完成。<b>未查得者一律標為待補，不以推測填充。</b></li>
+  </ul>
+
+  <h3>相關文件</h3>
+  <ul>
+    <li><a href="./docs/03_查證報告.md">查證報告</a> — 蘭姆年齡與鏡面死前留言的查證過程</li>
+    <li><a href="./docs/02_來源等級標註.md">來源等級標註</a> — 57 個引用的逐條分級</li>
+    <li><a href="./docs/04_分層年表.md">分層年表（文字版）</a> — 含話數與完整註記</li>
+    <li><a href="./docs/05_全文改寫版.md">全文改寫版</a> — 台灣譯名＋來源等級標記＋修正</li>
+    <li><a href="./docs/01_角色譯名對照表.md">角色譯名對照表</a></li>
+    <li><a href="./README.md">專案說明</a></li>
+  </ul>
+
+  <p>本專案為《名偵探柯南》（青山剛昌／小學館）的<b>非官方讀者分析</b>，不隸屬於任何權利方。所有作品內容之著作權歸原權利人所有。</p>
+</footer>
+
+</div>
+
+<script>
+const DATA = [
+ {era:"遠期前史（100–50 年前）：世襲與奠基", items:[
+  {y:"98 年前",t:"disputed",x:"<strong>Amanda Hughes</strong> 出生",warn:"作品未言明其年齡，此數字由 wiki 反推。"},
+  {y:"85 年前",t:"inferred",x:"Misae Yamamura 出生"},
+  {y:"72 年前",t:"inferred",x:"鈴木次郎吉出生"},
+  {y:"71 年前",t:"inferred",x:"枡山憲三（<strong>皮斯可</strong>）出生"},
+  {y:"67 年前",t:"confirmed",x:"<strong>Amanda Hughes</strong> 於<strong>烏丸蓮耶</strong>的生日宴上，見到當時仍是孩童的<strong>蘭姆</strong>",
+   ep:"話數待補（Amanda 的回憶台詞，屬 17 年前真相段落）",todo:true,
+   fix:"<b>已修正：</b>原文寫「幹部級特工蘭姆」，與正典衝突。正典為 Amanda 的回憶原話：「<b>當時還是個孩子</b>，卻被用一個奇怪的綽號叫著……是叫『蘭姆』吧？」<br>「蘭姆」是<b>世襲代號</b>，繼承自其長年侍奉「那位大人」、於蘭姆年幼時已故的父親——這是組織中已知唯一世襲的代號。<br><b>殘留問題（屬原作）：</b>若當時約 7–10 歲，蘭姆現年應為 74–77 歲，與已確定真身脇田兼則的外觀年齡有落差。"},
+  {y:"61 年前",t:"inferred",x:"Konosuke Jii 出生",warn:"怪盜基德線。英文原名有誤——「ジイ」是暱稱非姓氏，正確姓氏應為寺井。"},
+  {y:"60 年前",t:"inferred",x:"鈴木財閥創立"},
+  {y:"56 年前",t:"inferred",x:"小田切敏郎出生"},
+  {y:"54 年前",t:"inferred",x:"松本清長、<strong>宮野厚司</strong>出生"},
+  {y:"53 年前",t:"disputed",x:"<strong>世良瑪麗</strong>出生",warn:"瑪麗已幼化，其實際年齡是作品刻意保留的謎團。"},
+  {y:"52 年前",t:"inferred",x:"阿笠博士出生"},
+  {y:"51 年前",t:"inferred",x:"鈴木史郎出生"},
+  {y:"50 年前",t:"confirmed",x:"<strong>烏丸蓮耶</strong>公開失蹤並被推定死亡（作品作「半世紀前的離奇死亡」）",
+   ep:"漫畫 30 集 File 4–7／動畫 219 話（「黃昏之館」，烏丸蓮耶之名首次出現）",
+   warn:"部分日文考察資料另提及「享年 99 歲」「40 年前曾舉辦追思會」等說法，與「50 年前推定死亡」的關係尚未理清。"},
+  {y:"50 年前",t:"inferred",x:"阿笠栗介之死；<strong>黑田兵衛</strong>出生"}
+ ]},
+
+ {era:"中期（50–20 年前）：兩代人的鋪陳", items:[
+  {y:"41 年前",t:"inferred",x:"中森銀三出生",warn:"怪盜基德線。"},
+  {y:"40 年前",t:"confirmed",x:"阿笠博士與 Fusae Campbell 相遇，對方留信約定<strong>十年後再會</strong>",
+   ep:"漫畫 40 集 File 7「博士的初戀」／動畫 421–422 話「銀杏色的初戀」"},
+  {y:"40 年前",t:"inferred",x:"中森綠子出生"},
+  {y:"39 年前",t:"inferred",x:"Iwao Ida 出生"},
+  {y:"37 年前",t:"disputed",x:"工藤優作、工藤有希子、Jun Omura、<strong>若狹留美</strong>出生",
+   warn:"「若狹留美＝淺香」屬<b>社群推測</b>，作品尚未證實。原文將其寫為既定事實。"},
+  {y:"35 年前",t:"inferred",x:"大和敢助、諸伏高明（孔明）出生"},
+  {y:"33 年前",t:"inferred",x:"九條玲子出生"},
+  {y:"32 年前",t:"inferred",x:"小嶋元次、Yoshiaki Hara、<strong>赤井秀一</strong>出生"},
+  {y:"30 年前",t:"inferred",x:"伊織無我、風見裕也出生；<strong>宮野厚司離家，進入白鳩製藥</strong>；<strong>本堂伊森進入 CIA</strong>；帝丹小學建校",
+   warn:"生化計畫與 CIA 滲透的雙重起點。"},
+  {y:"約 25 年前",t:"inferred",x:"烏丸集團收購白鳩製藥致其破產，宮野夫婦轉而自營診所",warn:"※ 原文遺漏，補自中文時間線整理。"},
+  {y:"20 年前",t:"confirmed",x:"<strong>苦艾酒</strong>處決 <strong>Jodie Starling</strong> 之父",
+   ep:"漫畫 42 集（Jodie 以「A secret makes a woman woman」與指紋比對確認克莉絲即兇手）"},
+  {y:"20 年前",t:"inferred",x:"越水七槻出生；目暮綠與目暮十三於車禍臨檢中相遇",
+   warn:"原文的羅馬字「Natsuki Koshimizu」有誤，正確讀作 Nanatsuki（七槻）。"},
+  {y:"約 20 年前",t:"inferred",x:"<strong>諸伏景光</strong>雙親遇害",warn:"※ 原文遺漏。"},
+  {y:"19–18 年前",t:"inferred",x:"<strong>宮野志保</strong>出生；<strong>宮野夫婦死於研究室火災</strong>",warn:"※ 原文僅在正文提及，未列入年表。"},
+  {y:"18 年前",t:"inferred",x:"黑羽盜一於巴黎與千影相遇，初代<strong>怪盜基德</strong>登場",warn:"怪盜基德線。"}
+ ]},
+
+ {era:"核心事件（17 年前）", items:[
+  {y:"17 年前",t:"confirmed",x:"<strong>Juke 飯店雙屍案</strong>：羽田浩司與 Amanda Hughes 於美國遇害",
+   ep:"前期輪廓：漫畫 89–90 集「17 年前的同一犯罪現場」｜完整真相：漫畫 104 集 File 4–7「17 年前的真相」"},
+  {y:"17 年前",t:"confirmed",x:"羽田浩司切下 <code>PTON</code>、留下 <code>UMASCARA</code> 的鏡面死前留言",
+   ep:"同上；<code>CARASUMA</code> 的正解由工藤優作提出",
+   fix:"<b>已修正：</b>原文把「切下」與「留下」<b>完全講反</b>，且憑空多出一個 <code>O</code>（寫成 <code>POTON</code>）。<br>正典：鏡面原文 <code>PUT ON MASCARA</code> → 切下丟棄 <code>P T O N</code>（4 字母）→ 留在鏡上 <code>U M A S C A R A</code>（8 字母）。<br><b>原文遺漏的關鍵層次：</b><code>ASACA RUM</code>（淺香・蘭姆）是<b>會誤導人的初步解讀</b>；工藤優作指出這 8 個字母應合併讀作 <code>CARASUMA</code>＝<b>烏丸</b>，直指組織首領。這是一則刻意設計成會被誤讀一次的訊息。"},
+  {y:"17 年前",t:"confirmed",x:"工藤新一（5/4）、黑羽快斗（6/21）、中森青子、世良真純出生",ep:"話數待補",todo:true,
+   warn:"這一年是全作唯一同時承載「角色出生」與「核心懸案」的節點。新一與案件同齡——這不是巧合，是結構設計。"},
+  {y:"17 年前",t:"inferred",x:"<strong>蘭姆右眼負傷</strong>；角行棋子失蹤；黑田兵衛陷入昏迷",
+   warn:"原文的 “bishop shogi piece” 是英譯轉換造成的誤譯——日文原作為<b>角行</b>，屬將棋棋種，非西洋棋的主教。"}
+ ]},
+
+ {era:"近期（16 年前至今）", items:[
+  {y:"16 年前",t:"confirmed",x:"毛利蘭出生",ep:"話數待補",todo:true},
+  {y:"15 年前",t:"inferred",x:"松本清長於追捕連續殺人犯時留下臉部傷疤"},
+  {y:"13 年前",t:"inferred",x:"工藤新一與毛利蘭初次相遇"},
+  {y:"10 年前",t:"confirmed",x:"<strong>黑羽盜一遭 Snake 殺害</strong>，怪盜基德就此銷聲匿跡",ep:"話數待補",todo:true,
+   fix:"<b>已修正：</b>原文寫 “the organization Snake”（Snake 組織）。<b>Snake 是個人代號，不是組織名</b>，隸屬於覬覦「潘朵拉」寶石的另一個集團。"},
+  {y:"10 年前",t:"confirmed",x:"新一於海邊向<strong>世良瑪麗</strong>與<strong>赤井秀一</strong>自稱「<strong>福爾摩斯的門徒</strong>」",ep:"話數待補",todo:true,
+   warn:"十年後，瑪麗在倫敦的網球轉播中聽見柯南用完全相同的說法，因而識破其身分——並進一步推斷他握有可暫時恢復成人身體的化學手段。"},
+  {y:"10 年前",t:"inferred",x:"新一與蘭入讀帝丹小學；妃英理首次出庭；小五郎與英理分居；本堂瑛海加入 CIA；赤井家最後團聚"},
+  {y:"8–5 年前",t:"inferred",x:"赤井秀一進入 FBI，化名<strong>諸星大</strong>潛入組織"},
+  {y:"5 年前",t:"confirmed",x:"<strong>宮野明美</strong>與化名諸星大的赤井秀一相遇",ep:"話數待補",todo:true},
+  {y:"3 年前",t:"confirmed",x:"赤井秀一的 FBI 身分曝光，被迫脫離組織",ep:"話數待補",todo:true,
+   warn:"直接導致宮野明美後續遭監視與處決。"},
+  {y:"2–3 年前",t:"inferred",x:"<strong>苦艾酒</strong>假扮赤井務武接近世良瑪麗；工藤夫婦移居美國",warn:"※ 原文遺漏。"},
+  {y:"1 年前",t:"inferred",x:"雪莉、琴酒、伏特加赴美調查；伊達航車禍身亡",warn:"※ 原文遺漏。"},
+  {y:"現在",t:"confirmed",x:"<strong>工藤新一被灌食 APTX 4869，幼化為江戶川柯南</strong>",ep:"漫畫 File 1／動畫第 1 話"}
+ ]},
+
+ {era:"敘事現在：驗證上表的三個支點", items:[
+  {y:"揭曉",t:"confirmed",x:"黑衣組織首領身分＝<strong>烏丸蓮耶</strong>",ep:"漫畫 95 集 File 5／動畫 942 話"},
+  {y:"揭曉",t:"confirmed",x:"<strong>蘭姆</strong>真身＝<strong>脇田兼則</strong>",ep:"漫畫 100 集 File 1066／動畫 1079 話"},
+  {y:"揭曉",t:"confirmed",x:"17 年前羽田浩司案完整真相",ep:"漫畫 104 集 File 4–7"}
+ ]}
+];
+
+const TAG={confirmed:"◆ 確證",inferred:"◇ 推定",disputed:"○ 存疑"};
+const tl=document.getElementById('tl');
+
+DATA.forEach(g=>{
+  const sec=document.createElement('section');
+  sec.className='era-block';
+  const h=document.createElement('div');
+  h.className='era';
+  h.innerHTML=`<h2>${g.era}</h2><span>${g.items.length} 條</span>`;
+  sec.appendChild(h);
+  const track=document.createElement('div');
+  track.className='track';
+  g.items.forEach(it=>{
+    const el=document.createElement('article');
+    el.className='ev';
+    el.dataset.tier=it.t;
+    let meta='';
+    if(it.ep) meta+=`<span class="ep${it.todo?' todo':''}">${it.ep}</span>`;
+    if(it.fix) meta+=`<div class="fix">${it.fix}</div>`;
+    if(it.warn) meta+=`<div class="warn">${it.warn}</div>`;
+    el.innerHTML=`<div class="head"><span class="yr">${it.y}</span>`+
+                 `<span class="tier-tag">${TAG[it.t]}</span></div>`+
+                 `<p class="title">${it.x}</p>`+
+                 (meta?`<div class="meta">${meta}</div>`:'');
+    el.dataset.text=el.textContent.toLowerCase();
+    track.appendChild(el);
+  });
+  sec.appendChild(track);
+  tl.appendChild(sec);
+});
+
+const chips=[...document.querySelectorAll('.chip')];
+const q=document.getElementById('q');
+const countEl=document.getElementById('count');
+const emptyEl=document.getElementById('empty');
+
+// static per-tier totals
+['confirmed','inferred','disputed'].forEach(t=>{
+  const n=document.querySelectorAll(`.ev[data-tier="${t}"]`).length;
+  document.getElementById('n-'+t).textContent=n;
+});
+
+function apply(){
+  const on=new Set(chips.filter(c=>c.getAttribute('aria-pressed')==='true').map(c=>c.dataset.tier));
+  const term=q.value.trim().toLowerCase();
+  let shown=0;
+  document.querySelectorAll('.era-block').forEach(sec=>{
+    let secShown=0;
+    sec.querySelectorAll('.ev').forEach(ev=>{
+      const ok=on.has(ev.dataset.tier)&&(!term||ev.dataset.text.includes(term));
+      ev.style.display=ok?'':'none';
+      if(ok){shown++;secShown++}
+    });
+    sec.style.display=secShown?'':'none';
+    const s=sec.querySelector('.era span');
+    if(s) s.textContent=`${secShown} 條`;
+  });
+  countEl.textContent=`顯示 ${shown} / ${document.querySelectorAll('.ev').length} 條`;
+  emptyEl.style.display=shown?'none':'block';
+}
+
+chips.forEach(c=>c.addEventListener('click',()=>{
+  c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');
+  apply();
+}));
+q.addEventListener('input',apply);
+document.getElementById('only-confirmed').addEventListener('click',()=>{
+  chips.forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.tier==='confirmed')));
+  q.value='';apply();
+});
+document.getElementById('reset').addEventListener('click',()=>{
+  chips.forEach(c=>c.setAttribute('aria-pressed','true'));
+  q.value='';apply();
+});
+
+apply();
+</script>
+</body>
+</html>
