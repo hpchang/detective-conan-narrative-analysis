@@ -670,6 +670,38 @@ document.getElementById('reset').onclick=()=>{
   onlyFile.setAttribute('aria-pressed','false'); q.value=''; apply();};
 apply();
 </script>
-<!-- 瀏覽計數器：待接上 Supabase 後啟用 -->
+<script>
+/* ---------- 瀏覽計數器（Supabase）----------
+   publishable key 本來就是公開的：它會隨網頁送到每個訪客的瀏覽器。
+   安全性不靠保密，而是靠資料庫端的設定——page_hits 這張表開啟了 RLS
+   且沒有任何 policy，因此這把金鑰讀不到也寫不了它；只能呼叫下面兩個
+   函式，而累加函式僅能更新既有的列。                                */
+(function(){
+  const URL_ = 'https://eaawlrtrxwyurcfnekat.supabase.co';
+  const KEY  = 'sb_publishable_zS96EY5Uddhaq06hjt04sQ_E8WarUjc';
+  const SLUG = 'timeline';
+  const line = document.getElementById('hits-line');
+  const out  = document.getElementById('hits');
+  if(!line||!out) return;
+
+  // 同一個瀏覽階段內重新整理只讀取、不重複累加
+  const seen = sessionStorage.getItem('hits-counted') === '1';
+  const fn   = seen ? 'read_hits' : 'bump_hits';
+
+  fetch(`${URL_}/rest/v1/rpc/${fn}`,{
+    method:'POST',
+    headers:{'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':'application/json'},
+    body: JSON.stringify({page_slug:SLUG})
+  })
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(n => {
+    if(typeof n !== 'number') return;
+    out.textContent = n.toLocaleString('zh-TW');
+    line.hidden = false;
+    if(!seen) sessionStorage.setItem('hits-counted','1');
+  })
+  .catch(()=>{ /* 計數失敗就不顯示，不影響頁面其他部分 */ });
+})();
+</script>
 </body>
 </html>

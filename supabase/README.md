@@ -45,7 +45,7 @@ Project URL: https://xxxxxxxx.supabase.co
 Publishable key: sb_publishable_xxxxxxxxxxxx
 ```
 
-我會接上頁尾的計數器並部署。
+**已完成**——計數器已接上並部署。
 
 ---
 
