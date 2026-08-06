@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">名偵探柯南分層年表社群分享圖</title>
+  <desc id="desc">黑色漫畫網點風格背景，左側是網站標題，右側是放大鏡檢視三層時間線的原創圖像。</desc>
+  <defs>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.5" fill="#f1eee9" opacity=".16"/>
+    </pattern>
+    <pattern id="fine-dots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#f1eee9" opacity=".13"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="#000000"/>
+  <path d="M720 0H1200V630H595C682 533 727 432 734 327C741 222 706 113 720 0Z" fill="#121216"/>
+  <path d="M784 0H1200V630H666C747 537 790 440 797 337C804 232 773 119 784 0Z" fill="url(#dots)"/>
+
+  <!-- Editorial registration marks -->
+  <g stroke="#f1eee9" opacity=".28" stroke-width="2">
+    <path d="M42 64h38M61 45v38"/>
+    <path d="M1120 566h38M1139 547v38"/>
+  </g>
+  <text x="93" y="70" fill="#a29b92" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" letter-spacing="3">READER RESEARCH / 2026</text>
+
+  <!-- Main copy -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif">
+    <text x="76" y="157" fill="#f29076" font-size="25" font-weight="800" letter-spacing="5">名偵探柯南 · 讀者研究</text>
+    <text x="72" y="246" fill="#f1eee9" font-size="68" font-weight="900" letter-spacing="-2">柯南的世界，</text>
+    <text x="72" y="330" fill="#f1eee9" font-size="68" font-weight="900" letter-spacing="-2">到底發生過哪些事？</text>
+    <text x="76" y="390" fill="#a29b92" font-size="27" font-weight="600">一份會老實標出證據強度的分層年表</text>
+
+    <g transform="translate(76 447)">
+      <rect width="164" height="52" rx="26" fill="#2e1c18" stroke="#f29076" stroke-width="2"/>
+      <circle cx="27" cy="26" r="8" fill="#f29076"/>
+      <text x="48" y="35" fill="#f29076" font-size="22" font-weight="800">確證</text>
+
+      <rect x="178" width="164" height="52" rx="26" fill="#152330" stroke="#8bbde2" stroke-width="2"/>
+      <circle cx="205" cy="26" r="8" fill="none" stroke="#8bbde2" stroke-width="4"/>
+      <text x="226" y="35" fill="#8bbde2" font-size="22" font-weight="800">推算</text>
+
+      <rect x="356" width="164" height="52" rx="26" fill="#282211" stroke="#dcc476" stroke-width="2" stroke-dasharray="7 5"/>
+      <circle cx="383" cy="26" r="8" fill="none" stroke="#dcc476" stroke-width="3" stroke-dasharray="4 3"/>
+      <text x="404" y="35" fill="#dcc476" font-size="22" font-weight="800">存疑</text>
+    </g>
+
+    <text x="76" y="568" fill="#6f6b66" font-size="19" font-weight="600">hpchang.com/detective-conan-narrative-analysis/</text>
+  </g>
+
+  <!-- Three-layer timeline under the magnifier -->
+  <g transform="translate(826 104) rotate(5 150 205)" filter="url(#soft-shadow)">
+    <rect x="12" y="8" width="290" height="402" rx="24" fill="#1c1c22" stroke="#3a3844" stroke-width="3"/>
+    <rect x="28" y="24" width="258" height="370" rx="16" fill="url(#fine-dots)"/>
+    <line x1="91" y1="58" x2="91" y2="354" stroke="#5a5865" stroke-width="5"/>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-weight="800">
+      <g transform="translate(0 0)">
+        <circle cx="91" cy="89" r="13" fill="#f29076" stroke="#1c1c22" stroke-width="5"/>
+        <rect x="119" y="61" width="135" height="58" rx="10" fill="#2e1c18" stroke="#f29076" stroke-width="2"/>
+        <text x="136" y="85" fill="#f29076" font-size="16">◆ FILE 1008</text>
+        <text x="136" y="105" fill="#f1eee9" font-size="13">CANON / VERIFIED</text>
+      </g>
+      <g transform="translate(0 102)">
+        <circle cx="91" cy="89" r="13" fill="#1c1c22" stroke="#8bbde2" stroke-width="5"/>
+        <rect x="119" y="61" width="135" height="58" rx="10" fill="#152330" stroke="#8bbde2" stroke-width="2"/>
+        <text x="136" y="85" fill="#8bbde2" font-size="16">◇ INFERRED</text>
+        <text x="136" y="105" fill="#f1eee9" font-size="13">CLUE / DEDUCTION</text>
+      </g>
+      <g transform="translate(0 204)">
+        <circle cx="91" cy="89" r="13" fill="#1c1c22" stroke="#dcc476" stroke-width="4" stroke-dasharray="6 4"/>
+        <rect x="119" y="61" width="135" height="58" rx="10" fill="#282211" stroke="#dcc476" stroke-width="2" stroke-dasharray="7 5"/>
+        <text x="136" y="85" fill="#dcc476" font-size="16">○ DISPUTED</text>
+        <text x="136" y="105" fill="#f1eee9" font-size="13">THEORY / UNSURE</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Magnifying glass -->
+  <g transform="translate(747 44) rotate(-8 210 210)" filter="url(#soft-shadow)">
+    <circle cx="210" cy="210" r="152" fill="#000000" fill-opacity=".12" stroke="#f1eee9" stroke-width="24"/>
+    <circle cx="210" cy="210" r="132" fill="none" stroke="#dcc476" stroke-width="7"/>
+    <path d="M318 323L438 443" stroke="#f1eee9" stroke-width="43" stroke-linecap="round"/>
+    <path d="M321 326L438 443" stroke="#dcc476" stroke-width="12" stroke-linecap="round"/>
+    <path d="M112 126C148 78 223 62 278 91" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" opacity=".33"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="10" fill="#f29076"/>
+  <rect x="400" y="0" width="400" height="10" fill="#8bbde2"/>
+  <rect x="800" y="0" width="400" height="10" fill="#dcc476"/>
+</svg>
