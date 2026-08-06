@@ -8,7 +8,40 @@
 - 來源：`main` 分支 / 根目錄（classic branch 部署，非 GitHub Actions）
 - 帳號層級的自訂網域 `www.hpchang.com` 會自動套用到專案頁
 
-push 到 `main` 後約 30–60 秒自動重新建置。
+push 到 `main` 後通常約 30–60 秒自動重新建置。
+
+### 部署逾時紀錄與未來升級方案
+
+2026-08-06 部署 commit `bcbe942` 時，GitHub Pages 的動態 workflow 曾顯示失敗：
+
+- Jekyll 建置成功。
+- `actions/upload-pages-artifact@v3` 成功上傳並完成 `github-pages` artifact。
+- `actions/deploy-pages@v5` 建立部署後，狀態持續停在 `deployment_in_progress`。
+- action 使用預設的 600,000 ms（10 分鐘）timeout；等待逾時後取消部署並將 workflow 標為失敗。
+- 正式網站稍後仍成功更新，線上 HTML 與 OG 圖均和該 commit 完全一致。
+
+這次問題發生在 GitHub Pages 發布後端，不是本站的 HTML、圖片、Jekyll 建置或 artifact 上傳錯誤。GitHub API／Actions 顯示的失敗狀態也不一定代表正式站沒有更新，應另外檢查正式網址、檔案內容與 `Last-Modified`。
+
+目前 Pages 使用 GitHub 管理的 branch deployment：
+
+- `build_type: legacy`
+- 來源為 `main` 分支／根目錄
+- workflow 路徑為 `dynamic/pages/pages-build-deployment`
+
+`dynamic/pages/pages-build-deployment` 是 GitHub 自動產生的 workflow，並不存在於本 repository，因此無法直接修改其 job timeout 或加入額外 polling step。它本身已經使用 `jekyll-build-pages`、`upload-pages-artifact` 與 `deploy-pages`；單純再加一組相同步驟不會避開同一個 Pages 發布後端。
+
+因為這是近期部署中的單次異常，而且正式網站最終成功更新，目前先不遷移部署方式。若逾時持續重複發生，再考慮改為 repository-owned GitHub Actions workflow：
+
+1. 新增 `.github/workflows/static.yml`。
+2. 將 Pages source 從 branch deployment 切換為 GitHub Actions。
+3. 使用官方 `actions/configure-pages`、`actions/upload-pages-artifact`、`actions/deploy-pages`。
+4. 對 `deploy-pages` 明確設定較長的 `timeout`，例如 1,200,000 ms（20 分鐘）。
+5. 設定 `contents: read`、`pages: write`、`id-token: write` 權限。
+6. 使用 `github-pages` environment，並保留既有 branch protection／deployment policy。
+7. 設定 Pages concurrency，避免多次 push 的部署互相覆蓋。
+8. 遷移前確認 build artifact 完整，遷移後確認自訂網域、HTTPS 與正式網址均正常。
+
+即使改用自訂 workflow，仍會使用 GitHub Pages 的同一套部署服務，因此延長 timeout 只能提高容錯時間，不能保證消除平台端卡住的情況。
 
 重新啟用指令（若日後需要）：
 
