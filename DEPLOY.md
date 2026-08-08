@@ -1,6 +1,22 @@
 # 部署設定
 
-本站為**純靜態網站，無建置步驟**——`index.html` 單檔自帶所有 CSS 與 JS，只外連 `img/` 下的四張圖與 `favicon/`。
+本站為**純靜態網站，無建置步驟**——`index.html` 透過外部 CSS/JS 載入，只外連 `img/` 下的圖與 `favicon/`。
+
+## 前端結構
+
+為了能設定嚴格的 Content-Security-Policy，CSS 與 JS 已從 `index.html` 內聯外移：
+
+| 檔案 | 內容 |
+|---|---|
+| `index.html` | 頁面結構（無內聯 CSS／JS，無 inline style） |
+| `styles.css` | 所有樣式 |
+| `main.js` | 入口 module，初始化各模組 |
+| `mirror-puzzle.js` | 鏡子密碼互動 |
+| `timeline-data.js` | 年表資料與受信任標記的 DOM 安全轉換 |
+| `timeline.js` | 年表渲染、篩選、搜尋 |
+| `counter.js` | Supabase 瀏覽計數器（含 fetch timeout、sessionStorage 安全包裝） |
+
+`index.html` 設有嚴格 CSP：`script-src 'self'`、`style-src 'self'`，僅允許連線到 Supabase 專案網域。
 
 ## GitHub Pages（唯一的正式站台）
 
@@ -57,11 +73,12 @@ gh api repos/hpchang/detective-conan-narrative-analysis/pages/builds/latest -q '
 
 ## 瀏覽計數器（Supabase）
 
-設定與 SQL 見 [`supabase/`](./supabase/)。前端程式在 `index.html` 末端。
+設定與 SQL 見 [`supabase/`](./supabase/)。前端程式已從單檔 `index.html` 外移為 ES module（見下方「前端結構」）。
 
 - 專案：`detective-conan-narrative-analysis`（ap-northeast-1）
 - 前端只呼叫兩個 RPC：`bump_hits`、`read_hits`
 - `page_hits` 資料表開啟 RLS 且無任何 policy，前端金鑰無法直接讀寫
+- 兩個 RPC 在函式內固定 slug 白名單（目前只允許 `timeline`），拒絕未允許的 slug
 
 查看目前數字：
 

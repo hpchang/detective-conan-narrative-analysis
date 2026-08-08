@@ -59,6 +59,7 @@ Publishable key: sb_publishable_xxxxxxxxxxxx
 |---|---|
 | 資料表開 RLS 且無任何 policy | 拿到金鑰也**讀不到、寫不了**這張表 |
 | 只授權兩個函式 | 只能做「累加」和「讀數字」兩件事 |
+| 函式內固定 slug 白名單（目前只允許 `timeline`） | 日後新增其他列，匿名使用者也**不能用 RPC 碰**它們 |
 | 累加只更新既有列 | 無法用任意 slug 灌進無限多列 |
 | `security definer` + 固定 `search_path` | 避免 search_path 注入 |
 

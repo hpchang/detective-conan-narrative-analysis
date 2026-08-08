@@ -29,6 +29,8 @@ alter table public.page_hits enable row level security;
 
 -- ---------------------------------------------------------------
 -- 3. 累加函式（原子操作，回傳累加後的數字）
+--    在函式內固定 slug 白名單，拒絕未允許的 slug。
+--    即使日後有人新增其他列，匿名使用者也不能透過這個 RPC 碰它們。
 -- ---------------------------------------------------------------
 create or replace function public.bump_hits(page_slug text)
 returns bigint
@@ -39,6 +41,10 @@ as $$
 declare
   n bigint;
 begin
+  if page_slug is null or page_slug <> 'timeline' then
+    raise exception 'unknown page slug: %', page_slug using errcode = '22023';
+  end if;
+
   update public.page_hits
      set hits = hits + 1, updated_at = now()
    where slug = page_slug
@@ -56,15 +62,25 @@ $$;
 
 -- ---------------------------------------------------------------
 -- 4. 純讀取函式（同一個瀏覽階段重新整理時用，不會重複累加）
+--    同樣在函式內固定 slug 白名單。
 -- ---------------------------------------------------------------
 create or replace function public.read_hits(page_slug text)
 returns bigint
-language sql
+language plpgsql
 security definer
 stable
 set search_path = public
 as $$
-  select hits from public.page_hits where slug = page_slug;
+declare
+  n bigint;
+begin
+  if page_slug is null or page_slug <> 'timeline' then
+    raise exception 'unknown page slug: %', page_slug using errcode = '22023';
+  end if;
+
+  select hits into n from public.page_hits where slug = page_slug;
+  return n;
+end;
 $$;
 
 -- ---------------------------------------------------------------
