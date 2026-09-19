@@ -14,9 +14,9 @@
 | `mirror-puzzle.js` | 鏡子密碼互動 |
 | `timeline-data.js` | 年表資料與受信任標記的 DOM 安全轉換 |
 | `timeline.js` | 年表渲染、篩選、搜尋 |
-| `counter.js` | Supabase 瀏覽計數器（含 fetch timeout、sessionStorage 安全包裝） |
+| `counter.js` | Cloudflare Worker 瀏覽計數器（含 fetch timeout、sessionStorage 安全包裝） |
 
-`index.html` 設有嚴格 CSP：`script-src 'self'`、`style-src 'self'`，僅允許連線到 Supabase 專案網域。
+`index.html` 設有嚴格 CSP：`script-src 'self'`、`style-src 'self'`，`connect-src` 僅允許連線到計數器 Worker 的 origin（見 `index.html` 的 `connect-src`，即 `https://views-counter.views-counter-worker.workers.dev`）。
 
 ## GitHub Pages（唯一的正式站台）
 
@@ -71,19 +71,24 @@ gh api -X POST repos/hpchang/detective-conan-narrative-analysis/pages -f "source
 gh api repos/hpchang/detective-conan-narrative-analysis/pages/builds/latest -q '.status'
 ```
 
-## 瀏覽計數器（Supabase）
+## 瀏覽計數器（Cloudflare Worker）
 
-設定與 SQL 見 [`supabase/`](./supabase/)。前端程式已從單檔 `index.html` 外移為 ES module（見下方「前端結構」）。
+前端程式已從單檔 `index.html` 外移為 ES module（見上方「前端結構」）。
 
-- 專案：`detective-conan-narrative-analysis`（ap-northeast-1）
-- 前端只呼叫兩個 RPC：`bump_hits`、`read_hits`
-- `page_hits` 資料表開啟 RLS 且無任何 policy，前端金鑰無法直接讀寫
-- 兩個 RPC 在函式內固定 slug 白名單（目前只允許 `timeline`），拒絕未允許的 slug
+計數器由雲端 Worker 提供，**沒有任何金鑰**：可存取的 slug 由 Worker 端硬編碼的白名單決定，
+未知 slug 回 404。完整的 HTTP 契約、安全性說明與新站接入流程見
+`/Users/hpchang/Documents/claude/MyProjects/VIEWS_COUNTER_STANDARD.md`。
 
-查看目前數字：
+查看目前數字（`GET` 為唯讀）：
 
 ```bash
-curl -s -X POST "https://eaawlrtrxwyurcfnekat.supabase.co/rest/v1/rpc/read_hits" -H "apikey: sb_publishable_zS96EY5Uddhaq06hjt04sQ_E8WarUjc" -H "Authorization: Bearer sb_publishable_zS96EY5Uddhaq06hjt04sQ_E8WarUjc" -H "Content-Type: application/json" -d '{"page_slug":"timeline"}'
+curl -s "https://views-counter.views-counter-worker.workers.dev/timeline"
+```
+
+⚠️ `POST` 會**累加**一次（會改變正式計數，非必要不要跑）：
+
+```bash
+curl -s -X POST "https://views-counter.views-counter-worker.workers.dev/timeline"
 ```
 
 ---

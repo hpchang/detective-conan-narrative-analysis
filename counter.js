@@ -1,10 +1,9 @@
-/* ---------- 瀏覽計數器（Supabase）----------
-   publishable key 本來就是公開的：它會隨網頁送到每個訪客的瀏覽器。
-   安全性不靠保密，而是靠資料庫端的設定——page_hits 這張表開啟了 RLS
-   且沒有任何 policy，因此這把金鑰讀不到也寫不了它；只能呼叫下面兩個
-   函式，而累加函式僅能更新既有的列。                                */
-const URL_ = 'https://eaawlrtrxwyurcfnekat.supabase.co';
-const KEY  = 'sb_publishable_zS96EY5Uddhaq06hjt04sQ_E8WarUjc';
+/* ---------- 瀏覽計數器（Cloudflare Worker + KV）----------
+   沒有金鑰：可存取的 slug 由 Worker 端的硬編碼白名單決定，未知 slug 回 404。
+   GET  <BASE>/<slug>  只讀取，不累加。
+   POST <BASE>/<slug>  先累加再回傳。
+   兩者都回 {"count":N}。                                            */
+const VIEWS_BASE = 'https://views-counter.views-counter-worker.workers.dev';
 const SLUG = 'timeline';
 const STORAGE_KEY = `hits-counted:${SLUG}`;
 const TIMEOUT_MS  = 8000;
@@ -23,20 +22,18 @@ export function initCounter(){
 
   /* 同一個瀏覽階段內重新整理只讀取、不重複累加 */
   const seen = safeStorageGet(STORAGE_KEY) === '1';
-  const fn   = seen ? 'read_hits' : 'bump_hits';
   const controller = new AbortController();
   const timer = setTimeout(()=>controller.abort(), TIMEOUT_MS);
 
-  fetch(`${URL_}/rest/v1/rpc/${fn}`,{
-    method:'POST',
-    signal:controller.signal,
-    headers:{'apikey':KEY,'Authorization':`Bearer ${KEY}`,'Content-Type':'application/json'},
-    body: JSON.stringify({page_slug:SLUG})
+  fetch(`${VIEWS_BASE}/${encodeURIComponent(SLUG)}`,{
+    method: seen ? 'GET' : 'POST',
+    signal: controller.signal
   })
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
-  .then(n => {
+  .then(data => {
     clearTimeout(timer);
-    if(typeof n !== 'number') return;
+    const n = data?.count;
+    if(typeof n !== 'number' || !Number.isFinite(n)) return;
     out.textContent = n.toLocaleString('zh-TW');
     line.hidden = false;
     if(!seen) safeStorageSet(STORAGE_KEY,'1');
